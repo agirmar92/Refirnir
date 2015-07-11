@@ -102,6 +102,9 @@ body {
   .masthead-brand {
     float: left;
   }
+  .masthead-brand:hover {
+    -webkit-text-stroke: 1px #F48C1F;
+  }
   .masthead-nav {
     float: right;
   }
@@ -122,7 +125,7 @@ body {
 }
 .cover .btn-lg {
   padding: 10px 20px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 
@@ -173,4 +176,27 @@ body {
 /* aegir */
 .tvonull {
   border-bottom: 2px solid;
+}
+
+#username:hover {
+  color: red;
+}
+
+.takki {
+  background-color: #F48C1F;
+  color: white;
+}
+
+.takki:hover {
+  background-color: #CB6A04;
+}
+
+.takki2 {
+  background-color: #37859F;
+  color: white;
+  font-weight: normal;
+}
+
+.takki2:hover {
+  background-color: #07617F;
 }
