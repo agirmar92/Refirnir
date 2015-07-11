@@ -13,7 +13,18 @@ myApp.config(['$routeProvider',
 ]);
 
 /* Controller */
-myApp.controller('boltarController', [ '$scope', function ($scope) {
+myApp.controller('appController', [ '$scope', function ($scope) {
 		$scope.heading = 'Enginn bolti ';
+
+		$scope.createEvent = function() {
+			console.log("Create event clicked");
+		}
+
+		$scope.testButton = function() {
+			$scope.testArray.size = 0;
+			console.log($scope.testArray.size);
+		}
+
+		$scope.testArray = ["Ægir", "Nonni", "Kalli"];
 	}
 ]);
