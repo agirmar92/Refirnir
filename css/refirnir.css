@@ -113,7 +113,12 @@ body {
  */
 
 .cover {
-  padding: 0 20px;
+  padding: 20px;
+}
+.inner.cover {
+  background-color: rgba(0, 0, 0, 0.4);
+  -moz-border-radius: 35px; 
+  border-radius: 35px;
 }
 .cover .btn-lg {
   padding: 10px 20px;
