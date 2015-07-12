@@ -215,3 +215,16 @@ body {
 .takki2:hover {
   background-color: #07617F;
 }
+
+.table-hover>tbody>tr:hover {
+  background-color: #37859F;
+}
+
+.boltar th {
+  text-align: center;
+}
+
+.checkbox {
+  text-decoration: none;
+  display: inline;
+}
