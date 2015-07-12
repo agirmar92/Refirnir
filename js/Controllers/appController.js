@@ -1,7 +1,7 @@
-myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
-	function ($scope, $location, $routeParams, $timeout, mySharedResources, currentUser, Facebook) {
+myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
+	function ($scope, $rootScope, $location, $routeParams, $timeout, mySharedResources, currentUser, Facebook) {
 		$scope.userName = currentUser.userName;
-		$scope.loggedIn = false;
+		$rootScope.loggedIn = false;
 		$scope.user = {};
 		// And some fancy flags to display messages upon user status change
 		$scope.byebye = false;
@@ -26,25 +26,23 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
 			  // You might want to use this to disable/show/hide buttons and else
 			  $scope.facebookReady = true;
 		});
-
-		var userIsConnected = false;
       
 		Facebook.getLoginStatus(function(response) {
 			if (response.status === 'connected') {
-			  	$scope.loggedIn = true;
-			  	Facebook.api('/me', function(response) {
-			  		currentUser.ID = response.id;
-					currentUser.userName = response.name;
-					$scope.userName = response.name;
-			  	});
+			  	$scope.me();
 			}
+		});
+
+		// Heyrir ef einhver loggar inn
+		$rootScope.$on('userLoggedIn', function() {
+			$scope.me();
 		});
 
 		/**
 		* IntentLogin
 		*/
 		$scope.IntentLogin = function() {
-			if(!$scope.loggedIn) {
+			if(!$rootScope.loggedIn) {
 			 	 $scope.login();
 			}
 		};
@@ -56,8 +54,7 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
 			Facebook.login(function(response) {
 			  	if (response.status === 'connected') {
 			  		console.log(response);
-				    $scope.loggedIn = true;
-				    $scope.me();
+			  		$rootScope.$broadcast('userLoggedIn');
 			  	}
 			});
 		};
@@ -68,6 +65,7 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
         $scope.me = function() {
 			Facebook.api('/me', function(response) {
 				// Þetta er allt sem response gefur mér eins og er
+				$rootScope.loggedIn = true;
 				currentUser.ID = response.id;
 				currentUser.userName = response.name;
 				$scope.userName = response.name;
@@ -88,7 +86,7 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
 			Facebook.logout(function() {
 				$scope.$apply(function() {
 					$scope.user   = {};
-					$scope.loggedIn = false;  
+					$rootScope.loggedIn = false;  
 
 					currentUser.ID = '';
 					currentUser.userName = '';

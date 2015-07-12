@@ -1,5 +1,5 @@
-myApp.controller('eventsController', [ '$scope', '$location', '$routeParams', 'mySharedResources', 'currentUser', 
-	function ($scope, $location, $routeParams, mySharedResources, currentUser) {
+myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$routeParams', 'mySharedResources', 'currentUser', 
+	function ($scope, $rootScope, $location, $routeParams, mySharedResources, currentUser) {
 		$scope.events = [];
 
 		angular.element(document).ready(function () {

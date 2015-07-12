@@ -1,44 +1,59 @@
-<div id="noEvent" ng-show="events.length === 0">
-  <h1 class="cover-heading">Enginn bolti <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></h1>
-  <p class="lead">Það er enginn bolti skráður í augnablikinu</p>
-  <p class="lead">
-    <a ng-click="createEventButton()" class="btn btn-lg btn-default takki">Stofna Refabolta</a>
-  </p>
-  <p class="lead">
-    <a ng-click="" class="btn btn-lg btn-default takki2">Eldri Refaboltar</a>
-  </p>
+<div ng-show="loggedIn">
+  <div id="noEvent" ng-show="events.length === 0">
+    <h1 class="cover-heading">Enginn bolti <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></h1>
+    <p class="lead">Það er enginn bolti skráður í augnablikinu</p>
+    <p class="lead">
+      <a ng-click="createEventButton()" class="btn btn-lg btn-default takki">Stofna Refabolta</a>
+    </p>
+    <p class="lead">
+      <a ng-click="" class="btn btn-lg btn-default takki2">Eldri Refaboltar</a>
+    </p>
+  </div>
+
+
+  <div id="someEvent" ng-show="events.length !== 0">
+    <h1 class="cover-heading">Refaboltar <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></h1>
+    <p class="lead">Smelltu á refabolta til að fá frekari upplýsingar</p>
+    <div class="table-responsive">
+      <table class="table table-hover boltar">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Hvar</th>
+            <th>Hvenær</th>
+            <th>Fjöldi Refa</th>
+            <th>Skráning</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="event in events track by $index">
+            <td><button type="button" ng-click="eventClicked($index)" class="btn btn-xs btn-default takki2">Skoða</button></td>
+            
+            <td>{{event.location}}</td>
+            <td>{{event.dateOfEvent}}</td>
+            <td>{{event.signedPlayers.length}}/{{event.maxPlayers}}</td>
+            <td><a href="javascript: void(0)" ng-click="checkBoxClicked(event.ID)" class="checkbox"><span id="checkbox-{{event.ID}}" class="glyphicon" ng-class="isSigned(event.ID)" aria-hidden="true"></a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="lead">
+        <a ng-click="logout()" class="btn btn-lg btn-default takki">Hreinsa</a>
+      </p>
+    </div>
+  </div>
 </div>
 
-
-<div id="someEvent" ng-show="events.length !== 0">
-  <h1 class="cover-heading">Refaboltar <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></h1>
-  <p class="lead">Smelltu á refabolta til að fá frekari upplýsingar</p>
-  <div class="table-responsive">
-    <table class="table table-hover boltar">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Hvar</th>
-          <th>Hvenær</th>
-          <th>Fjöldi Refa</th>
-          <th>Skráning</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr ng-repeat="event in events track by $index">
-          <td><button type="button" ng-click="eventClicked($index)" class="btn btn-xs btn-default takki2">Skoða</button></td>
-          
-          <td>{{event.location}}</td>
-          <td>{{event.dateOfEvent}}</td>
-          <td>{{event.signedPlayers.length}}/{{event.maxPlayers}}</td>
-          <td><a href="javascript: void(0)" ng-click="checkBoxClicked(event.ID)" class="checkbox"><span id="checkbox-{{event.ID}}" class="glyphicon" ng-class="isSigned(event.ID)" aria-hidden="true"></a></td>
-        </tr>
-      </tbody>
-    </table>
-
+<div ng-hide="loggedIn">
+  <div id="noEvent">
+    <h1 class="cover-heading">Hæ Gaui</h1>
+    <p class="lead">Nenniru að athuga hvort þú getir skráð þig inn með FB??</p>
     <p class="lead">
-      <a ng-click="logout()" class="btn btn-lg btn-default takki">Hreinsa</a>
+      <a ng-click="" class="btn btn-lg btn-default takki">Kúktu ekki á þig</a>
+    </p>
+    <p class="lead">
+      <a ng-click="" class="btn btn-lg btn-default takki2">LOL</a>
     </p>
   </div>
 </div>
