@@ -18,6 +18,7 @@
       <table class="table table-hover boltar">
         <thead>
           <tr>
+            <th></th>
             <th>Hvar</th>
             <th>Hvenær</th>
             <th>Fjöldi Refa</th>
@@ -26,7 +27,9 @@
         </thead>
 
         <tbody>
-          <tr ng-repeat="event in events track by $index" ng-click="eventClicked($index)">
+          <tr ng-repeat="event in events track by $index">
+            <td><button type="button" ng-click="eventClicked($index)" class="btn btn-xs btn-default takki2">Skoða</button></td>
+            
             <td>{{event.location}}</td>
             <td>{{event.dateOfEvent}}</td>
             <td>{{event.signedPlayers}}/{{event.maxPlayers}}</td>
@@ -35,9 +38,5 @@
         </tbody>
       </table>
     </div>
-
-    <p class="lead">
-      <a ng-click="" class="btn btn-lg btn-default takki2">Eyða</a>
-    </p>
   </div>
 </div>

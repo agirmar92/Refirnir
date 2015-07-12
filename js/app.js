@@ -77,6 +77,14 @@ myApp.factory('mySharedResources', function(currentUser) {
 		return this.events;
     }
 
+    factory.signAttendance = function(index) {
+    	// TODO
+    }
+
+    factory.unsignAttendance = function(index) {
+    	// TODO
+    }
+
     factory.createEvent = function() {
     	// TODO
     }
