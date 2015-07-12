@@ -1,0 +1,9 @@
+{
+  "firebase": "refirnir",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
