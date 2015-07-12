@@ -38,9 +38,9 @@
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="javascript: void(0)" ng-click="eventsButton()">Boltar</a></li>
                   <li><a href="javascript: void(0)" ng-click="">Stofna bolta</a>
-                  <li ng-show="loggedIn()"><a id="username" href="javascript: void(0)" ng-click="">{{userName}}</a></li>
-                  <li ng-show="loggedIn()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
-                  <li ng-show="!loggedIn()"><button type="button" class="btn btn-primary btn-large" data-ng-disabled="!facebookReady" ng-click="IntentLogin()">Login with Facebook</button></li>
+                  <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()">{{userName}}</a></li>
+                  <li ng-show="loggedIn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
+                  <li ng-show="!loggedIn"><button type="button" class="btn btn-primary btn-large" data-ng-disabled="!facebookReady" ng-click="IntentLogin()">Innskrá með Facebook</button></li>
                 </ul>
               </nav>
             </div>

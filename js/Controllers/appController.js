@@ -1,7 +1,8 @@
 myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
 	function ($scope, $location, $routeParams, $timeout, mySharedResources, currentUser, Facebook) {
 		$scope.userName = currentUser.userName;
-		$scope.loggedIn = userIsConnected;
+		$scope.loggedIn = false;
+		$scope.user = {};
 		// And some fancy flags to display messages upon user status change
 		$scope.byebye = false;
 		$scope.salutation = false;
@@ -29,8 +30,13 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
 		var userIsConnected = false;
       
 		Facebook.getLoginStatus(function(response) {
-			if (response.status == 'connected') {
-			  	userIsConnected = true;
+			if (response.status === 'connected') {
+			  	$scope.loggedIn = true;
+			  	Facebook.api('/me', function(response) {
+			  		currentUser.ID = response.id;
+					currentUser.userName = response.name;
+					$scope.userName = response.name;
+			  	});
 			}
 		});
 
@@ -38,7 +44,7 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
 		* IntentLogin
 		*/
 		$scope.IntentLogin = function() {
-			if(!userIsConnected) {
+			if(!$scope.loggedIn) {
 			 	 $scope.login();
 			}
 		};
@@ -48,7 +54,8 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
 		*/
 		$scope.login = function() {
 			Facebook.login(function(response) {
-			  	if (response.status == 'connected') {
+			  	if (response.status === 'connected') {
+			  		console.log(response);
 				    $scope.loggedIn = true;
 				    $scope.me();
 			  	}
@@ -60,6 +67,11 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
         */
         $scope.me = function() {
 			Facebook.api('/me', function(response) {
+				// Þetta er allt sem response gefur mér eins og er
+				currentUser.ID = response.id;
+				currentUser.userName = response.name;
+				$scope.userName = response.name;
+
 				/**
 				 * Using $scope.$apply since this happens outside angular framework.
 				 */
@@ -77,33 +89,35 @@ myApp.controller('appController', [ '$scope', '$location', '$routeParams', '$tim
 				$scope.$apply(function() {
 					$scope.user   = {};
 					$scope.loggedIn = false;  
+
+					currentUser.ID = '';
+					currentUser.userName = '';
+					$scope.userName = '';
 				});
 			});
 		}
       
-      /**
-       * Taking approach of Events :D
-       */
-      $scope.$on('Facebook:statusChange', function(ev, data) {
-        console.log('Status: ', data);
-        if (data.status == 'connected') {
-          $scope.$apply(function() {
-            $scope.salutation = true;
-            $scope.byebye     = false;    
-          });
-        } else {
-          $scope.$apply(function() {
-            $scope.salutation = false;
-            $scope.byebye     = true;
-            
-            // Dismiss byebye message after two seconds
-            $timeout(function() {
-              $scope.byebye = false;
-            }, 2000)
-          });
-        }
-        
-        
-      });
+      	/**
+		* Taking approach of Events :D
+		*/
+  		$scope.$on('Facebook:statusChange', function(ev, data) {
+	        console.log('Status: ', data);
+	        if (data.status === 'connected') {
+	          $scope.$apply(function() {
+	            $scope.salutation = true;
+	            $scope.byebye     = false;    
+	          });
+	        } else {
+	          $scope.$apply(function() {
+	            $scope.salutation = false;
+	            $scope.byebye     = true;
+	            
+	            // Dismiss byebye message after two seconds
+	            $timeout(function() {
+	              $scope.byebye = false;
+	            }, 2000)
+	          });
+	        }
+      	});
 	}
 ]);
