@@ -8,6 +8,9 @@
     <p class="lead">
       <a ng-click="" class="btn btn-lg btn-default takki2">Eldri Refaboltar</a>
     </p>
+    <input type="text" ng-model="data.text"/>
+    <!-- all changes from our Firebase database magically appear here! -->
+    <h1>You said: {{ data.text }}</h1>
   </div>
 
 
@@ -47,7 +50,7 @@
 
 <div ng-hide="loggedIn">
   <div id="noEvent">
-    <h1 class="cover-heading">Hæ Gaui</h1>
+    <h1 class="cover-heading">Sæll kæri Refur</h1>
     <p class="lead">Nenniru að athuga hvort þú getir skráð þig inn með FB??</p>
     <p class="lead">
       <a ng-click="" class="btn btn-lg btn-default takki">Kúktu ekki á þig</a>

@@ -1,0 +1,1 @@
+myApp.constant('SERVER_URL', "http://dispatch.ru.is/h07/api/v1/");

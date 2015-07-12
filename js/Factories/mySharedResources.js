@@ -33,7 +33,7 @@ myApp.factory('mySharedResources', function(currentUser) {
 		var weekDay = today.getDay(); //Sunday is 0!
 
 		// búa til mock gögn
-		for (var i = 0; i < 10; i++) {
+		/*for (var i = 0; i < 10; i++) {
 			this.events.push({
 				ID: i, 
 				author: currentUser.userName + " " + i,
@@ -44,7 +44,7 @@ myApp.factory('mySharedResources', function(currentUser) {
 				signedPlayers: ['Ægir Már Jónsson', 'Danni', 'Gaui', 'Víkingur', 'Maggi', 'Gulli'],
 				maxPlayers: 8
 			});
-		};
+		};*/
 
 		return this.events;
     }

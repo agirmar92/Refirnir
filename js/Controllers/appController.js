@@ -1,11 +1,9 @@
 myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
 	function ($scope, $rootScope, $location, $routeParams, $timeout, mySharedResources, currentUser, Facebook) {
-		$scope.userName = currentUser.userName;
+		$rootScope.userName = '';
 		$rootScope.loggedIn = false;
-		$scope.user = {};
-		// And some fancy flags to display messages upon user status change
-		$scope.byebye = false;
-		$scope.salutation = false;
+		$rootScope.facebookReady = false;
+		$rootScope.user = {};
 
 		$scope.eventsButton = function() {
 			$location.path("/boltar");
@@ -23,99 +21,68 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 		  	// This is for convenience, to notify if Facebook is loaded and ready to go.
 		  	return Facebook.isReady();
 		}, function(newVal) {
-			  // You might want to use this to disable/show/hide buttons and else
-			  $scope.facebookReady = true;
+			// You might want to use this to disable/show/hide buttons and else
+			$rootScope.facebookReady = true;
 		});
-      
+
 		Facebook.getLoginStatus(function(response) {
-			if (response.status === 'connected') {
-			  	$scope.me();
-			}
-		});
-
-		// Heyrir ef einhver loggar inn
-		$rootScope.$on('userLoggedIn', function() {
-			$scope.me();
-		});
-
-		/**
-		* IntentLogin
-		*/
-		$scope.IntentLogin = function() {
-			if(!$rootScope.loggedIn) {
-			 	 $scope.login();
-			}
-		};
-
-		/**
-		* Login
-		*/
-		$scope.login = function() {
-			Facebook.login(function(response) {
-			  	if (response.status === 'connected') {
-			  		console.log(response);
-			  		$rootScope.$broadcast('userLoggedIn');
-			  	}
-			});
-		};
-
-		/**
-        * me 
-        */
-        $scope.me = function() {
-			Facebook.api('/me', function(response) {
-				// Þetta er allt sem response gefur mér eins og er
+			if(response.status === 'connected') {
 				$rootScope.loggedIn = true;
-				currentUser.ID = response.id;
-				currentUser.userName = response.name;
-				$scope.userName = response.name;
+				$scope.me();
+			} else {
+				$rootScope.loggedIn = false;
+			}
+		});
 
-				/**
-				 * Using $scope.$apply since this happens outside angular framework.
-				 */
-				$scope.$apply(function() {
-				 	 $scope.user = response;
+		$scope.login = function() {
+			if (!$rootScope.loggedIn) {
+				// From now on you can use the Facebook service just as Facebook api says
+				Facebook.login(function(response) {
+					if (response.status === 'connected') {
+						$rootScope.loggedIn = true;
+						$scope.me();
+					}
 				});
-			});
-        };
+			}
+	    };
 
-        /**
-		* Logout
-		*/
-		$scope.logout = function() {
+	    $scope.logout = function() {
 			Facebook.logout(function() {
 				$scope.$apply(function() {
-					$scope.user   = {};
-					$rootScope.loggedIn = false;  
-
-					currentUser.ID = '';
-					currentUser.userName = '';
-					$scope.userName = '';
+					$rootScope.user   = {};
+					$rootScope.userName = '';
+					$rootScope.loggedIn = false;
 				});
 			});
 		}
-      
-      	/**
+
+	    $scope.me = function() {
+			Facebook.api('/me', {fields: 'first_name'}, function(response) {
+				$rootScope.user = response;
+				$rootScope.userName = response.first_name;
+			});
+
+	    };
+
+		/**
 		* Taking approach of Events :D
 		*/
-  		$scope.$on('Facebook:statusChange', function(ev, data) {
-	        console.log('Status: ', data);
-	        if (data.status === 'connected') {
-	          $scope.$apply(function() {
-	            $scope.salutation = true;
-	            $scope.byebye     = false;    
-	          });
-	        } else {
-	          $scope.$apply(function() {
-	            $scope.salutation = false;
-	            $scope.byebye     = true;
-	            
-	            // Dismiss byebye message after two seconds
-	            $timeout(function() {
-	              $scope.byebye = false;
-	            }, 2000)
-	          });
-	        }
-      	});
+		$scope.$on('Facebook:statusChange', function(ev, data) {
+			console.log('Status: ', data);
+			if (data.status === 'connected') {
+				$scope.$apply(function() {
+					// 
+				});
+			} else {
+				$scope.$apply(function() {
+					//
+
+					// Dismiss byebye message after two seconds
+					$timeout(function() {
+						//
+					}, 2000)
+				});
+			}
+		});
 	}
 ]);

@@ -18,12 +18,10 @@
     <!-- Custom styles for this template -->
     <link href="css/refirnir.css" rel="stylesheet">
 
-    <!-- FireBase -->
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-
   </head>
 
   <body ng-app="refirnirApp">
+    <div id="fb-root"></div>
     <div class="background-image"></div>
 
     <div class="site-wrapper">
@@ -38,9 +36,9 @@
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="javascript: void(0)" ng-click="eventsButton()">Boltar</a></li>
                   <li><a href="javascript: void(0)" ng-click="">Stofna bolta</a>
-                  <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span ng-bind="userName"></span></a></li>
+                  <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span class="theUsernameSpan" ng-bind="userName + ' Refur'"></span><span style="display: none" class="logoutIcon glyphicon glyphicon-log-out"></span></a></li>
                   <li ng-show="loggedIn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
-                  <li ng-show="!loggedIn"><button type="button" class="btn btn-primary btn-large" ng-disabled="!facebookReady" ng-click="IntentLogin()">Facebook <span class="glyphicon glyphicon-random" aria-hidden="true"></span></button></li>
+                  <li ng-show="!loggedIn"><button type="button" class="btn btn-primary btn-large" ng-disabled="!facebookReady" ng-click="login()">Facebook login</button></li>
                 </ul>
               </nav>
             </div>
@@ -68,6 +66,8 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   
     <!-- TO BE MINIFIED -->

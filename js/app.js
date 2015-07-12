@@ -1,4 +1,4 @@
-var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook']);
+var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase']);
 
 myApp.config(['$routeProvider', 'FacebookProvider', 
 	function ($routeProvider, FacebookProvider) {

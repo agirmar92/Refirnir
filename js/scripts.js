@@ -1,12 +1,12 @@
 $( document ).ready(function() {
-    console.log( "ready!" );
-
     $('#username').mouseover(function() {
-		$('#username').css('width', $('#username').outerWidth());
-		$('#username').text('Útskrá?');
+    	$('#username').css('width', $('#username').outerWidth());
+		$('.theUsernameSpan').hide();
+		$('.logoutIcon').show()
 	})
 
 	$('#username').mouseleave(function() {
-		$('#username').text('Ægir Már Jónsson');
+		$('.logoutIcon').hide()
+		$('.theUsernameSpan').show();
 	})
 });
