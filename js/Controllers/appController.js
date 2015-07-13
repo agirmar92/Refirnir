@@ -1,5 +1,5 @@
-myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$firebaseObject', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
-	function ($scope, $rootScope, $location, $routeParams,$firebaseObject, $timeout, mySharedResources, currentUser, Facebook) {
+myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$firebaseArray', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
+	function ($scope, $rootScope, $location, $routeParams, $firebaseArray, $timeout, mySharedResources, currentUser, Facebook) {
 		$rootScope.userName = '';
 		$rootScope.loggedIn = false;
 		$rootScope.facebookReady = false;
@@ -11,12 +11,6 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 
 		angular.element(document).ready(function () {
 			mySharedResources.sync();
-			mySharedResources.syncedEvents.$bindTo($rootScope, "events");
-			
-			mySharedResources.syncedEvents.$loaded().then(function() {
-				console.log("loaded record:", mySharedResources.syncedEvents);
-				console.log("loaded record2:", $rootScope.events);
-			});
     	});
 
 		$scope.eventsButton = function() {

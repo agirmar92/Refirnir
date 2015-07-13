@@ -1,5 +1,5 @@
-myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseObject', '$location', '$routeParams', 'mySharedResources', 'currentUser', 
-	function ($scope, $rootScope, $firebaseObject, $location, $routeParams, mySharedResources, currentUser) {
+myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$routeParams', 'mySharedResources', 'currentUser', 
+	function ($scope, $rootScope, $location, $routeParams, mySharedResources, currentUser) {
 		// Búa til nýjan RefaBolta
 		$scope.createEventButton = function() {
 			// TODO (sama og i appController væntanlega)

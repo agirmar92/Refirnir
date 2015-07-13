@@ -1,10 +1,26 @@
-<div id="noEvent" ng-repeat="currentEvent in events track by $index">
-  <h1 class="cover-heading">Bolti {{currentEvent.ID}}</h1>
-  <p class="lead">Creator: {{currentEvent.creator}}</p>
-  <p class="lead">Date Created: {{currentEvent.dateCreated}}</p>
-  <p class="lead">Date Due: {{currentEvent.dateOfEvent}}</p>
-  <p class="lead">Location: {{currentEvent.location}}</p>
-  <p class="lead">Max Players: {{currentEvent.maxPlayers}}</p>
+<div id="noEvent">
+
+  <h1 class="cover-heading">{{currentEvent.location}}({{currentEvent.ID}})</h1>
   <p class="lead">Time: {{currentEvent.timeOfEvent}}</p>
-  <p class="lead" ng-repeat="player in currentEvent.signedPlayers track by $index">{{player}}</p>
+  
+  <div>
+  <table class="table table-hover boltar">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nafn</th>
+          <th>Skráð</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="player in currentEvent.signedPlayers track by $index">
+          <td></td>
+          <td>{{player}}</td>
+          <td>TODO</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

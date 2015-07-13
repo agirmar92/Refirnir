@@ -1,11 +1,11 @@
 /* Factories, mun skila mock gögnum til að byrja með */
-myApp.factory('mySharedResources', function(currentUser, $firebaseObject) {
+myApp.factory('mySharedResources', function(currentUser, $firebaseArray, $rootScope) {
     var factory = { syncedEvents: {} };
 
     factory.sync = function() {
         var ref = new Firebase("https://refirnir.firebaseio.com/boltar");
         // download the data into a local object
-        this.syncedEvents = $firebaseObject(ref);
+        $rootScope.events = $firebaseArray(ref);
     }
 
     factory.loginUser = function(loginObject) {
@@ -17,15 +17,8 @@ myApp.factory('mySharedResources', function(currentUser, $firebaseObject) {
     }
 
     factory.getEvent = function(index) {
-    	if (index >= this.events.length) {
-    		// out of bounds
-    		return null;
-    	} else if (index < 0) {
-    		// out of bounds
-    		return null;
-    	}
-
-    	return this.events[index];
+    	// athuga hvort bolti(index) sé í events fylkinu
+        return $rootScope.events.$getRecord(index);
     }
 
     factory.getEvents = function(objectToSync) {
