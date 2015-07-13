@@ -1,26 +1,31 @@
 <div id="noEvent">
 
   <h1 class="cover-heading">{{currentEvent.location}}({{currentEvent.ID}})</h1>
-  <p class="lead">Time: {{currentEvent.timeOfEvent}}</p>
+  <p class="">Klukkan: {{currentEvent.timeOfEvent}}</p>
   
-  <div>
-  <table class="table table-hover boltar">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Nafn</th>
-          <th>Skráð</th>
-        </tr>
-      </thead>
+  <div class="row eventBody">
+    <div class="col-lg-6" style="height:390px;">
+      <p style="background-color: green; margin: 0; height:100%">Þetta á að vera völlur</p>
+    </div>
 
-      <tbody>
-        <tr ng-repeat="player in currentEvent.signedPlayers track by $index">
-          <td></td>
-          <td>{{player}}</td>
-          <td>TODO</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="col-lg-6">
+      <table class="table table-hover boltar">
+        <thead>
+          <tr>
+            <th>Nafn</th>
+            <th>Skráð</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="player in currentEvent.signedPlayers track by $index">
+            <td>{{player}}</td>
+            <td>TODO</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
 </div>

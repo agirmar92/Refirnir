@@ -39,7 +39,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 			} else {
 				return "glyphicon-unchecked";
 			}*/
-			return true;
+			return "glyphicon-check";
 		}
 	}
 ]);

@@ -228,3 +228,8 @@ body {
   text-decoration: none;
   display: inline;
 }
+
+.eventBody {
+  margin: 0;
+  margin-bottom: 20px;
+}
