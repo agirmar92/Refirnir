@@ -1,7 +1,12 @@
 /* Factories, mun skila mock gögnum til að byrja með */
-myApp.factory('mySharedResources', function(currentUser) {
-    var factory = {};
-    factory.events = [];
+myApp.factory('mySharedResources', function(currentUser, $firebaseObject) {
+    var factory = { syncedEvents: {} };
+
+    factory.sync = function() {
+        var ref = new Firebase("https://refirnir.firebaseio.com/boltar");
+        // download the data into a local object
+        this.syncedEvents = $firebaseObject(ref);
+    }
 
     factory.loginUser = function(loginObject) {
     	// TODO
@@ -23,30 +28,14 @@ myApp.factory('mySharedResources', function(currentUser) {
     	return this.events[index];
     }
 
-    factory.getEvents = function() {
-    	this.events = [];
+    factory.getEvents = function(objectToSync) {
+        // for use later!!
+        var today = new Date();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        var weekDay = today.getDay(); //Sunday is 0!
 
-		// for use later!!
-    	var today = new Date();
-		var mm = today.getMonth()+1; //January is 0!
-		var yyyy = today.getFullYear();
-		var weekDay = today.getDay(); //Sunday is 0!
-
-		// búa til mock gögn
-		/*for (var i = 0; i < 10; i++) {
-			this.events.push({
-				ID: i, 
-				author: currentUser.userName + " " + i,
-				location: "Garðabær",
-				dateCreated: "12.07.2015",
-				dateOfEvent: "14.07.2015",
-				timeOfEvent: "16:30",
-				signedPlayers: ['Ægir Már Jónsson', 'Danni', 'Gaui', 'Víkingur', 'Maggi', 'Gulli'],
-				maxPlayers: 8
-			});
-		};*/
-
-		return this.events;
+    	return this.syncedEvents;
     }
 
     factory.signAttendance = function(index) {

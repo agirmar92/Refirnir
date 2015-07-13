@@ -1,9 +1,23 @@
-myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
-	function ($scope, $rootScope, $location, $routeParams, $timeout, mySharedResources, currentUser, Facebook) {
+myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$firebaseObject', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
+	function ($scope, $rootScope, $location, $routeParams,$firebaseObject, $timeout, mySharedResources, currentUser, Facebook) {
 		$rootScope.userName = '';
 		$rootScope.loggedIn = false;
 		$rootScope.facebookReady = false;
 		$rootScope.user = {};
+		$rootScope.events = {};
+
+		// synchronize the object with a three-way data binding
+		// click on `index.html` above to see it used in the DOM!
+
+		angular.element(document).ready(function () {
+			mySharedResources.sync();
+			mySharedResources.syncedEvents.$bindTo($rootScope, "events");
+			
+			mySharedResources.syncedEvents.$loaded().then(function() {
+				console.log("loaded record:", mySharedResources.syncedEvents);
+				console.log("loaded record2:", $rootScope.events);
+			});
+    	});
 
 		$scope.eventsButton = function() {
 			$location.path("/boltar");
