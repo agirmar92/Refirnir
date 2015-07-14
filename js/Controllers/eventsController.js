@@ -5,16 +5,21 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray',
 			// TODO (sama og i appController væntanlega)
 			/*var ref = new Firebase('https://refirnir.firebaseio.com/boltar');
 			var $rootScope.events = $firebaseArray(ref);*/
-			$rootScope.events.$add({ ID: "bar",
-									 creator: "Nonni",
-									 dateCreated: "15.04.2014",
-									 dateOfEvent: "07.08.2015",
-									 location: "Seyðisfjörður",
+			var today = new Date();
+			var prufa =			 {	 desc: "Þetta verður rosalegur bolti",
+									 creator: "Ægir",
+									 dateCreated: today.toLocaleDateString(),
+									 dateOfEvent: "07/08/2015",
+									 dayOfEvent: "Föstudagurinn",
+									 location: "Garðabær",
 									 maxPlayers: 22,
 									 signedPlayers: { 0: "Siggi Hall" },
-									 timeOfEvent: "14:44" }).then(function(ref) {
+									 timeOfEvent: "14:44"  };
+
+			$rootScope.events.$add(prufa).then(function(ref) {
 			  var id = ref.key();
 			  console.log("added record with id " + id);
+			  console.log($rootScope.events);
 			  //$rootScope.events.$indexFor(id); // returns location in the array
 			});
 		}

@@ -27,13 +27,13 @@
         </thead>
 
         <tbody>
-          <tr ng-repeat="event in events track by $index">
-            <td><button type="button" ng-click="eventClicked(event.ID)" class="btn btn-xs btn-default takki2">Skoða</button></td>
+          <tr ng-repeat="event in events track by event.$id">
+            <td><button type="button" ng-click="eventClicked(event.$id)" class="btn btn-xs btn-default takki2">Skoða</button></td>
             
             <td>{{event.location}}</td>
             <td>{{event.dateOfEvent}}</td>
             <td>{{event.signedPlayers.length}}/{{event.maxPlayers}}</td>
-            <td><a href="javascript: void(0)" ng-click="" class="checkbox"><span id="checkbox-{{event.ID}}" class="glyphicon" ng-class="isSigned(event.ID)" aria-hidden="true"></a></td>
+            <td><a href="javascript: void(0)" ng-click="" class="checkbox"><span id="checkbox-{{event.$id}}" class="glyphicon" ng-class="isSigned(event.$id)" aria-hidden="true"></a></td>
           </tr>
         </tbody>
       </table>

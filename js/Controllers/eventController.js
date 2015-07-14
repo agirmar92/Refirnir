@@ -8,5 +8,9 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$firebaseObject',
         		$location.path("/boltar");
         	}
     	});
+
+    	$scope.weekDay = function() {
+    		return "Mánudagurinn";
+    	}
 	}
 ]);
