@@ -7,7 +7,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray',
 			var $rootScope.events = $firebaseArray(ref);*/
 			var today = new Date();
 			var prufa =			 {	 desc: "Þetta verður rosalegur bolti",
-									 creator: "Ægir",
+									 creator: $rootScope.userName,
 									 dateCreated: today.toLocaleDateString(),
 									 dateOfEvent: "07/08/2015",
 									 dayOfEvent: "Föstudagurinn",
@@ -31,8 +31,8 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray',
 			$location.path("/bolti/" + index);
 		}
 
-		$scope.cleanUp = function() {
-			$scope.events = [];
+		$scope.deleteEventButton = function(index) {
+			$rootScope.events.$remove(mySharedResources.getEvent(index));
 		}
 
 		$scope.checkBoxClicked = function(index) {
