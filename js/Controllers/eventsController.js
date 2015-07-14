@@ -1,8 +1,22 @@
-myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$routeParams', 'mySharedResources', 'currentUser', 
-	function ($scope, $rootScope, $location, $routeParams, mySharedResources, currentUser) {
+myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray', '$location', '$routeParams', 'mySharedResources', 'currentUser', 
+	function ($scope, $rootScope, $firebaseArray, $location, $routeParams, mySharedResources, currentUser) {
 		// Búa til nýjan RefaBolta
 		$scope.createEventButton = function() {
 			// TODO (sama og i appController væntanlega)
+			/*var ref = new Firebase('https://refirnir.firebaseio.com/boltar');
+			var $rootScope.events = $firebaseArray(ref);*/
+			$rootScope.events.$add({ ID: "bar",
+									 creator: "Nonni",
+									 dateCreated: "15.04.2014",
+									 dateOfEvent: "07.08.2015",
+									 location: "Seyðisfjörður",
+									 maxPlayers: 22,
+									 signedPlayers: { 0: "Siggi Hall" },
+									 timeOfEvent: "14:44" }).then(function(ref) {
+			  var id = ref.key();
+			  console.log("added record with id " + id);
+			  //$rootScope.events.$indexFor(id); // returns location in the array
+			});
 		}
 
 		// GEYMA: checkBoxClicked(event.ID)
