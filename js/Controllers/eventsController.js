@@ -1,5 +1,5 @@
-myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray', '$location', '$routeParams', 'mySharedResources', 'currentUser', 
-	function ($scope, $rootScope, $firebaseArray, $location, $routeParams, mySharedResources, currentUser) {
+myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray', '$location', '$routeParams', 'mySharedResources', 
+	function ($scope, $rootScope, $firebaseArray, $location, $routeParams, mySharedResources) {
 		// Búa til nýjan RefaBolta
 		$scope.createEventButton = function() {
 			// TODO (sama og i appController væntanlega)
@@ -7,7 +7,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray',
 			var $rootScope.events = $firebaseArray(ref);*/
 			var today = new Date();
 			var prufa =			 {	 desc: "Þetta verður rosalegur bolti",
-									 creator: $rootScope.userName,
+									 creator: $rootScope.user.name,
 									 dateCreated: today.toLocaleDateString(),
 									 dateOfEvent: "07/08/2015",
 									 dayOfEvent: "Föstudagurinn",
@@ -53,7 +53,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray',
 
 		$scope.isSigned = function(index) {
 			/*var theEvent = mySharedResources.getEvent(index);
-			if (theEvent.signedPlayers.indexOf(currentUser.userName) !== -1) {
+			if (theEvent.signedPlayers.indexOf($rootScope.user.name) !== -1) {
 				return "glyphicon-check";
 			} else {
 				return "glyphicon-unchecked";

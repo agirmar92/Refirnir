@@ -1,6 +1,5 @@
-myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$firebaseArray', '$timeout', 'mySharedResources', 'currentUser', 'Facebook', 
-	function ($scope, $rootScope, $location, $routeParams, $firebaseArray, $timeout, mySharedResources, currentUser, Facebook) {
-		$rootScope.userName = '';
+myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$firebaseArray', '$timeout', 'mySharedResources', 'Facebook', 
+	function ($scope, $rootScope, $location, $routeParams, $firebaseArray, $timeout, mySharedResources, Facebook) {
 		$rootScope.loggedIn = false;
 		$rootScope.facebookReady = false;
 		$rootScope.user = {};
@@ -8,7 +7,6 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 
 		// synchronize the object with a three-way data binding
 		// click on `index.html` above to see it used in the DOM!
-
 		angular.element(document).ready(function () {
 			mySharedResources.sync();
     	});
@@ -59,7 +57,6 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 				Facebook.logout(function() {
 					$scope.$apply(function() {
 						$rootScope.user   = {};
-						$rootScope.userName = '';
 						$rootScope.loggedIn = false;
 					});
 				});
@@ -69,7 +66,6 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 	    $scope.me = function() {
 			Facebook.api('/me', {fields: 'first_name'}, function(response) {
 				$rootScope.user.name = response.first_name;
-				$rootScope.userName = response.first_name;
 			});
 			Facebook.api('/me/picture', function(response) {
 				console.log(response);

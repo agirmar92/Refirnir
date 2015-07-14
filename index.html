@@ -36,7 +36,7 @@
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="javascript: void(0)" ng-click="eventsButton()">Boltar</a></li>
                   <li><a href="javascript: void(0)" ng-click="">Stofna bolta</a>
-                  <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span class="theUsernameSpan" ng-bind="userName + ' Refur'"></span>
+                  <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span class="theUsernameSpan" ng-bind="user.name + ' Refur'"></span>
                   <span style="display: none" class="logoutIcon glyphicon glyphicon-log-out"></span></a></li>
                   <img src="{{user.picture}}" ng-show="loggedIn" alt="" class="profilePicture">
                   <li ng-show="!loggedIn"><button type="button" class="btn btn-primary btn-large" ng-disabled="!facebookReady" ng-click="login()" style="margin-left: 20px;">Facebook login</button></li>
@@ -73,7 +73,6 @@
   
     <!-- TO BE MINIFIED -->
     <script src="js/app.js" type="text/javascript"></script>
-    <script src="js/Factories/currentUser.js" type="text/javascript"></script>
     <script src="js/Factories/mySharedResources.js" type="text/javascript"></script>
     <script src="js/Controllers/appController.js" type="text/javascript"></script>
     <script src="js/Controllers/eventsController.js" type="text/javascript"></script>
