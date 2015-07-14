@@ -233,3 +233,14 @@ body {
   margin: 0;
   margin-bottom: 20px;
 }
+
+.profilePicture {
+  /*Chrome,Safari*/
+-webkit-clip-path: url(foxclip.svg);
+
+/* Firefox*/
+clip-path: url(foxclip.svg#svgClip);
+
+/* iOS support */
+ -webkit-mask: url(foxclip.svg);
+}

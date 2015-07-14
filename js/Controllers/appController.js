@@ -55,21 +55,26 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 	    };
 
 	    $scope.logout = function() {
-			Facebook.logout(function() {
-				$scope.$apply(function() {
-					$rootScope.user   = {};
-					$rootScope.userName = '';
-					$rootScope.loggedIn = false;
+	    	if (confirm("Ertu viss um að þú viljir útskrá?")) {
+				Facebook.logout(function() {
+					$scope.$apply(function() {
+						$rootScope.user   = {};
+						$rootScope.userName = '';
+						$rootScope.loggedIn = false;
+					});
 				});
-			});
+	    	}
 		}
 
 	    $scope.me = function() {
 			Facebook.api('/me', {fields: 'first_name'}, function(response) {
-				$rootScope.user = response;
+				$rootScope.user.name = response.first_name;
 				$rootScope.userName = response.first_name;
 			});
-
+			Facebook.api('/me/picture', function(response) {
+				console.log(response);
+				$rootScope.user.picture = response.data.url;
+			});
 	    };
 
 		/**
