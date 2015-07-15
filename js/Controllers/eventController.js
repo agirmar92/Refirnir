@@ -1,5 +1,5 @@
-myApp.controller('eventController', [ '$scope', '$rootScope', '$firebaseObject', '$location', '$routeParams', 'mySharedResources', 
-	function ($scope, $rootScope, $firebaseObject, $location, $routeParams, mySharedResources) {
+myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$routeParams', 'mySharedResources', 
+	function ($scope, $rootScope, $location, $routeParams, mySharedResources) {
 		$scope.currentEvent = {};
 
 		angular.element(document).ready(function () {

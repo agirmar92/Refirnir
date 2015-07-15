@@ -1,10 +1,8 @@
-myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray', '$location', '$routeParams', 'mySharedResources', 
-	function ($scope, $rootScope, $firebaseArray, $location, $routeParams, mySharedResources) {
+myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$routeParams', 'mySharedResources', 
+	function ($scope, $rootScope, $location, $routeParams, mySharedResources) {
 		// Búa til nýjan RefaBolta
 		$scope.createEventButton = function() {
 			// TODO (sama og i appController væntanlega)
-			/*var ref = new Firebase('https://refirnir.firebaseio.com/boltar');
-			var $rootScope.events = $firebaseArray(ref);*/
 			var today = new Date();
 			var prufa =			 {	 desc: "Þetta verður rosalegur bolti",
 									 creator: $rootScope.user.name,
@@ -16,23 +14,18 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$firebaseArray',
 									 signedPlayers: { 0: "Siggi Hall" },
 									 timeOfEvent: "14:44"  };
 
-			$rootScope.events.$add(prufa).then(function(ref) {
-			  var id = ref.key();
-			  console.log("added record with id " + id);
-			  console.log($rootScope.events);
-			  //$rootScope.events.$indexFor(id); // returns location in the array
-			});
+			mySharedResources.createEvent(prufa);
 		}
 
 		// GEYMA: checkBoxClicked(event.ID)
 
+		$scope.deleteEventButton = function(index) {
+			mySharedResources.deleteEvent(index);
+		}
+
 		// Ef ákveðinn bolti er valinn
 		$scope.eventClicked = function(index) {
 			$location.path("/bolti/" + index);
-		}
-
-		$scope.deleteEventButton = function(index) {
-			$rootScope.events.$remove(mySharedResources.getEvent(index));
 		}
 
 		$scope.checkBoxClicked = function(index) {

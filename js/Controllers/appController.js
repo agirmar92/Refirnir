@@ -1,8 +1,9 @@
-myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$firebaseArray', '$timeout', 'mySharedResources', 'Facebook', 
-	function ($scope, $rootScope, $location, $routeParams, $firebaseArray, $timeout, mySharedResources, Facebook) {
+myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$routeParams', '$timeout', 'mySharedResources', 'Facebook', 
+	function ($scope, $rootScope, $location, $routeParams, $timeout, mySharedResources, Facebook) {
 		$rootScope.loggedIn = false;
 		$rootScope.facebookReady = false;
 		$rootScope.user = {};
+		$rootScope.users = {};
 		$rootScope.events = {};
 
 		// synchronize the object with a three-way data binding
@@ -64,13 +65,23 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 		}
 
 	    $scope.me = function() {
+	    	var userObject =    { facebookID: 0,
+	    					      name: '',
+	    					      picture: '' };
 			Facebook.api('/me', {fields: 'first_name'}, function(response) {
-				$rootScope.user.name = response.first_name;
+				console.log(response);
+				userObject.facebookID = response.id;
+				userObject.name = response.first_name;
 			});
 			Facebook.api('/me/picture', function(response) {
 				console.log(response);
-				$rootScope.user.picture = response.data.url;
+				userObject.picture = response.data.url;
+				$rootScope.user = mySharedResources.getUser(userObject);
+				if ($rootScope.user === null) {
+					mySharedResources.createUser(userObject);
+				}
 			});
+
 	    };
 
 		/**

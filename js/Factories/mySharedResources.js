@@ -1,21 +1,41 @@
 /* Factories, mun skila mock gögnum til að byrja með */
-myApp.factory('mySharedResources', function($firebaseArray, $rootScope) {
-    var factory = { syncedEvents: {} };
+myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $rootScope) {
+    var factory = { databaseRef: null,
+                    usersRef: null,
+                    eventsRef: null };
 
     factory.sync = function() {
-        var ref = new Firebase("https://refirnir.firebaseio.com/boltar");
+        this.databaseRef = new Firebase("https://refirnir.firebaseio.com");
+        this.usersRef = this.databaseRef.child("users");
+        this.eventsRef = this.databaseRef.child("boltar");
         // download the data into a local object
-        $rootScope.events = $firebaseArray(ref);
+        $rootScope.events = $firebaseArray(this.eventsRef);
+        $rootScope.users = $firebaseArray(this.usersRef);
     }
 
     /* GETTERS AND SETTERS */
 
-    factory.getUser = function(index) {
-    	// TODO
+    factory.createUser = function(userObject) {
+        $rootScope.users.$add(userObject).then(function(ref) {
+            var id = ref.key();
+            console.log("added user with id " + id);
+
+            $rootScope.user = $rootScope.users.$getRecord(id);
+            $rootScope.user.$id = $rootScope.user.facebookID;
+            $rootScope.users.$save($rootScope.user).then(function(ref) {
+                console.log("saved: ", $rootScope.user);
+                $rootScope.users.$remove(id).then(function(ref) {
+                    console.log("removed the inital user");
+                })
+            })
+
+            //$rootScope.events.$indexFor(id); // returns location in the array
+        });
     }
 
-    factory.createUser = function(userObject) {
-    	// TODO
+    /* returns true if the user with index is found, else false */
+    factory.getUser = function(userObject) {
+        return $rootScope.users.$getRecord(userObject.facebookID);
     }
 
     factory.getEvent = function(index) {
@@ -24,7 +44,12 @@ myApp.factory('mySharedResources', function($firebaseArray, $rootScope) {
     }
 
     factory.createEvent = function(eventObject) {
-        // TODO
+        $rootScope.events.$add(eventObject).then(function(ref) {
+          var id = ref.key();
+          console.log("added record with id " + id);
+          console.log($rootScope.events);
+          //$rootScope.events.$indexFor(id); // returns location in the array
+        });
     }
 
     factory.editEvent = function(eventObject) {
@@ -32,7 +57,7 @@ myApp.factory('mySharedResources', function($firebaseArray, $rootScope) {
     }
 
     factory.deleteEvent = function(index) {
-        // TODO
+        $rootScope.events.$remove(this.getEvent(index));
     }
 
     /*factory.getEvents = function(objectToSync) {
