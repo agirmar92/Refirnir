@@ -72,14 +72,17 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 				console.log(response);
 				userObject.facebookID = response.id;
 				userObject.name = response.first_name;
-			});
-			Facebook.api('/me/picture', function(response) {
-				console.log(response);
-				userObject.picture = response.data.url;
-				$rootScope.user = mySharedResources.getUser(userObject);
-				if ($rootScope.user === null) {
-					mySharedResources.createUser(userObject);
-				}
+				Facebook.api('/me/picture', function(response) {
+					console.log(response);
+					userObject.picture = response.data.url;
+					$rootScope.user = mySharedResources.getUser(userObject);
+					if ($rootScope.user === null) {
+						mySharedResources.createUser(userObject);
+					} else if ($rootScope.user.picture !== userObject.picture) {
+						$rootScope.user.picture = userObject.picture;
+						mySharedResources.updateUser();
+					}
+				});
 			});
 
 	    };

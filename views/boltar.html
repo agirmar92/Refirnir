@@ -33,7 +33,7 @@
             <td>{{event.location}}</td>
             <td>{{event.dateOfEvent}}</td>
             <td>{{event.signedPlayers.length}}/{{event.maxPlayers}}</td>
-            <td><a href="javascript: void(0)" ng-click="deleteEventButton(event.$id)" class="checkbox"><span id="checkbox-{{event.$id}}" class="glyphicon" ng-class="isSigned(event.$id)" aria-hidden="true"></a></td>
+            <td><a href="javascript: void(0)" ng-click="checkBoxClicked(event.$id)" class="checkbox"><span id="checkbox-{{event.$id}}" class="glyphicon" ng-class="isSigned(event.$id)" aria-hidden="true"></a></td>
           </tr>
         </tbody>
       </table>
@@ -42,7 +42,7 @@
       <a ng-click="createEventButton()" class="btn btn-lg btn-default takki">Búa til</a>
     </p>
     <p class="lead">
-      <a ng-click="createEventButton()" class="btn btn-lg btn-default takki2">Eyða</a>
+      <a ng-click="deleteEventButton(0)" class="btn btn-lg btn-default takki2">Eyða</a>
     </p>
 
     </div>
