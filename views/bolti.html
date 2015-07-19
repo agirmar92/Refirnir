@@ -13,14 +13,12 @@
         <thead>
           <tr>
             <th>Nafn</th>
-            <th>Skráð</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr ng-repeat="player in currentEvent.signedPlayers track by $index">
-            <td>{{player}}</td>
-            <td>TODO</td>
+          <tr ng-repeat="playerID in currentEvent.signedPlayers track by $index">
+            <td>{{getName(playerID)}}</td>
           </tr>
         </tbody>
       </table>
@@ -29,5 +27,9 @@
   </div>
 
   <p>{{currentEvent.desc}}</p>
+
+  <p class="lead">
+    <a ng-click="deleteEventButton()" ng-show="isCreator()" class="btn btn-lg btn-default takki2">Eyða</a>
+  </p>
 
 </div>

@@ -3,22 +3,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 		// Búa til nýjan RefaBolta
 		$scope.createEventButton = function() {
 			// TODO (sama og i appController væntanlega)
-			var today = new Date();
-			var prufa =			 {	 desc: "Þetta verður rosalegur bolti",
-									 creator: $rootScope.user.name,
-									 dateCreated: today.toLocaleDateString(),
-									 dateOfEvent: "07/08/2015",
-									 dayOfEvent: "Föstudagurinn",
-									 location: "Garðabær",
-									 maxPlayers: 22,
-									 signedPlayers: { 0: "Siggi Hall" },
-									 timeOfEvent: "14:44"  };
-
-			mySharedResources.createEvent(prufa);
-		}
-
-		$scope.deleteEventButton = function(index) {
-			mySharedResources.deleteEvent(index);
+			$location.path("/bolti");
 		}
 
 		// Ef ákveðinn bolti er valinn

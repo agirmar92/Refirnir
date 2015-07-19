@@ -75,8 +75,10 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 				Facebook.api('/me/picture', function(response) {
 					console.log(response);
 					userObject.picture = response.data.url;
-					$rootScope.user = mySharedResources.getUser(userObject);
+					$rootScope.user = mySharedResources.getUser(userObject.facebookID);
 					if ($rootScope.user === null) {
+						userObject.wins = 0;
+						userObject.loss = 0;
 						mySharedResources.createUser(userObject);
 					} else if ($rootScope.user.picture !== userObject.picture) {
 						$rootScope.user.picture = userObject.picture;

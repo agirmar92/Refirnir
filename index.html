@@ -38,7 +38,7 @@
                   <li><a href="javascript: void(0)" ng-click="">Stofna bolta</a>
                   <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span class="theUsernameSpan" ng-bind="user.name + ' Refur'"></span>
                   <span style="display: none" class="logoutIcon glyphicon glyphicon-log-out"></span></a></li>
-                  <img src="{{user.picture}}" ng-show="loggedIn" alt="" class="profilePicture">
+                  <img ng-src="{{user.picture}}" ng-show="loggedIn" alt="" class="profilePicture">
                   <li ng-show="!loggedIn"><button type="button" class="btn btn-primary btn-large" ng-disabled="!facebookReady" ng-click="login()" style="margin-left: 20px;">Facebook login</button></li>
                 </ul>
               </nav>

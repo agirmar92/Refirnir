@@ -1,5 +1,5 @@
 /* Factories, mun skila mock gögnum til að byrja með */
-myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $rootScope) {
+myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $rootScope, $q) {
     var factory = { databaseRef: null,
                     usersRef: null,
                     eventsRef: null };
@@ -31,8 +31,8 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
     }
 
     /* returns true if the user with index is found, else false */
-    factory.getUser = function(userObject) {
-        return $rootScope.users.$getRecord(userObject.facebookID);
+    factory.getUser = function(facebookID) {
+        return $rootScope.users.$getRecord(facebookID);
     }
 
     factory.updateUser = function() {
@@ -59,8 +59,14 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
         // TODO
     }
 
-    factory.deleteEvent = function(index) {
-        $rootScope.events.$remove(this.getEvent(index));
+    factory.deleteEvent = function(event) {
+        return $q(function(resolve, reject) {
+            $rootScope.events.$remove(event).then(function(result) {
+                resolve("Successfully deleted event");
+            }, function(result){
+                reject(result);
+            });
+        });
     }
 
     /*factory.getEvents = function(objectToSync) {
@@ -88,10 +94,10 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
         var i = theEvent.signedPlayers.indexOf($rootScope.user.facebookID);
         if (i !== -1) {
             theEvent.signedPlayers.splice(i, 1);
+            $rootScope.events.$save(theEvent).then(function(ref) {
+                console.log("cancelled attendance!");
+            });
         }
-        $rootScope.events.$save(theEvent).then(function(ref) {
-            console.log("cancelled attendance!");
-        });
     }
 
     return factory;

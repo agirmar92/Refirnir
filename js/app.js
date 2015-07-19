@@ -4,6 +4,7 @@ myApp.config(['$routeProvider', 'FacebookProvider',
 	function ($routeProvider, FacebookProvider) {
 		$routeProvider
 			.when('/boltar',             { templateUrl: 'views/boltar.html', controller: 'eventsController' })
+			.when('/bolti',				 { templateUrl: 'views/bolti.html',  controller: 'eventController'  })
 			.when('/bolti/:ID',          { templateUrl: 'views/bolti.html',  controller: 'eventController'  })
 			
 			.otherwise({
