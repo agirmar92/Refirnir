@@ -5,10 +5,9 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 
 		angular.element(document).ready(function () {
 			if ($routeParams.ID === null || $routeParams.ID === undefined) {
-				var today = new Date();
 				$scope.currentEvent = {	 desc: "",
 										 creator: $rootScope.user.facebookID,
-										 dateCreated: today.toLocaleDateString(),
+										 dateCreated: "",
 										 dateOfEvent: "",
 										 dayOfEvent: "",
 										 location: "",
@@ -17,15 +16,17 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 										 timeOfEvent: ""  };
 
 				//mySharedResources.createEvent(prufa);
+				$scope.editing = true;
 			} else {
 	        	$scope.currentEvent = mySharedResources.getEvent($routeParams.ID);
 	        	if (!$rootScope.loggedIn || $scope.currentEvent === null) {
 	        		$location.path("/boltar");
 	        	}
+	        	$scope.editing = false;
 			}
     	});
 
-    	$scope.weekDay = function() {
+    	$scope.getWeekDay = function() {
     		return "Mánudagurinn";
     	}
 
@@ -35,6 +36,18 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 
     	$scope.getPicture = function(id) {
     		return mySharedResources.getUser(id).picture;
+    	}
+
+    	$scope.saveEvent = function() {
+    		//
+    		$scope.editing = false;
+    	}
+
+    	$scope.createEvent = function() {
+    		var today = new Date();
+    		$scope.currentEvent.dateCreated = today.toLocaleDateString();
+    		mySharedResources.createEvent($scope.currentEvent);
+    		$scope.editing = false;
     	}
 
     	$scope.deleteEventButton = function() {
