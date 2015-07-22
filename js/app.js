@@ -3,9 +3,9 @@ var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase']);
 myApp.config(['$routeProvider', 'FacebookProvider', 
 	function ($routeProvider, FacebookProvider) {
 		$routeProvider
-			.when('/boltar',             { templateUrl: 'views/boltar.html', controller: 'eventsController' })
-			.when('/bolti',				 { templateUrl: 'views/bolti.html',  controller: 'eventController'  })
-			.when('/bolti/:ID',          { templateUrl: 'views/bolti.html',  controller: 'eventController'  })
+			.when('/boltar',             { templateUrl: 'views/boltar.html', 	controller: 'eventsController'  })
+			.when('/nyr-bolti',			 { templateUrl: 'views/nyrBolti.html',  controller: 'newEventController'})
+			.when('/bolti/:ID',          { templateUrl: 'views/bolti.html', 	controller: 'eventController'   })
 			
 			.otherwise({
 				redirectTo: '/boltar'

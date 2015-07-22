@@ -4,7 +4,7 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 		$scope.editing = false;
 
 		angular.element(document).ready(function () {
-			if ($routeParams.ID === null || $routeParams.ID === undefined) {
+			if ($routeParams.ID === undefined) {
 				$scope.currentEvent = {	 desc: "",
 										 creator: $rootScope.user.facebookID,
 										 dateCreated: "",
@@ -12,7 +12,7 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 										 dayOfEvent: "",
 										 location: "",
 										 maxPlayers: 0,
-										 signedPlayers: { 0: creator },
+										 signedPlayers: { 0: $rootScope.user.facebookID },
 										 timeOfEvent: ""  };
 
 				//mySharedResources.createEvent(prufa);
@@ -28,27 +28,27 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 
     	$scope.getWeekDay = function() {
     		return "Mánudagurinn";
-    	}
+    	};
 
     	$scope.getName = function(id) {
     		return mySharedResources.getUser(id).name;
-    	}
+    	};
 
     	$scope.getPicture = function(id) {
     		return mySharedResources.getUser(id).picture;
-    	}
+    	};
 
     	$scope.saveEvent = function() {
     		//
     		$scope.editing = false;
-    	}
+    	};
 
     	$scope.createEvent = function() {
     		var today = new Date();
     		$scope.currentEvent.dateCreated = today.toLocaleDateString();
     		mySharedResources.createEvent($scope.currentEvent);
     		$scope.editing = false;
-    	}
+    	};
 
     	$scope.deleteEventButton = function() {
     		if(confirm("Ertu viss um að þú viljir eyða þessum fallega bolta?")) {
@@ -59,10 +59,10 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 					console.log(result);
 				});
     		}
-		}
+		};
 
 		$scope.isCreator = function() {
 			return ($scope.currentEvent.creator === $rootScope.user.facebookID);
-		}
+		};
 	}
 ]);

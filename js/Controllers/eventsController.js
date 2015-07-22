@@ -3,13 +3,13 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 		// Búa til nýjan RefaBolta
 		$scope.createEventButton = function() {
 			// TODO (sama og i appController væntanlega)
-			$location.path("/bolti");
-		}
+			$location.path("/nyr-bolti");
+		};
 
 		// Ef ákveðinn bolti er valinn
 		$scope.eventClicked = function(index) {
 			$location.path("/bolti/" + index);
-		}
+		};
 
 		$scope.checkBoxClicked = function(index) {
 			var element = angular.element(document.querySelector('#checkbox-' + index));
@@ -24,7 +24,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 				element.removeClass('glyphicon-check');
 				element.addClass('glyphicon-unchecked');
 			}
-		}
+		};
 
 		$scope.isSigned = function(index) {
 			var theEvent = mySharedResources.getEvent(index);
@@ -33,6 +33,6 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 			} else {
 				return "glyphicon-unchecked";
 			}
-		}
+		};
 	}
 ]);

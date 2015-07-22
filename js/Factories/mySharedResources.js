@@ -11,7 +11,7 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
         // download the data into a local object
         $rootScope.events = $firebaseArray(this.eventsRef);
         $rootScope.users = $firebaseArray(this.usersRef);
-    }
+    };
 
     /* GETTERS AND SETTERS */
 
@@ -28,23 +28,23 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
 
             //$rootScope.events.$indexFor(id); // returns location in the array
         });
-    }
+    };
 
     /* returns true if the user with index is found, else false */
     factory.getUser = function(facebookID) {
         return $rootScope.users.$getRecord(facebookID);
-    }
+    };
 
     factory.updateUser = function() {
         $rootScope.users.save($rootScope.user).then(function() {
             console.log("user info (picture most likely) updated");
         });
-    }
+    };
 
     factory.getEvent = function(index) {
     	// athuga hvort bolti(index) sé í events fylkinu
         return $rootScope.events.$getRecord(index);
-    }
+    };
 
     factory.createEvent = function(eventObject) {
         $rootScope.events.$add(eventObject).then(function(ref) {
@@ -53,11 +53,11 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
           console.log($rootScope.events);
           //$rootScope.events.$indexFor(id); // returns location in the array
         });
-    }
+    };
 
     factory.editEvent = function(eventObject) {
         // TODO
-    }
+    };
 
     factory.deleteEvent = function(event) {
         return $q(function(resolve, reject) {
@@ -67,7 +67,7 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
                 reject(result);
             });
         });
-    }
+    };
 
     /*factory.getEvents = function(objectToSync) {
         // for use later!!
@@ -87,7 +87,7 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
         $rootScope.events.$save(theEvent).then(function(ref) {
             console.log("signed up!");
         });
-    }
+    };
 
     factory.unsignAttendance = function(index) {
         var theEvent = this.getEvent(index);
@@ -98,7 +98,7 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
                 console.log("cancelled attendance!");
             });
         }
-    }
+    };
 
     return factory;
 });

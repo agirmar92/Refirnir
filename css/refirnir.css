@@ -244,3 +244,8 @@ clip-path: url(foxclip.svg#svgClip);
 /* iOS support */
  -webkit-mask: url(foxclip.svg);
 }
+
+input,
+textarea {
+  color: black;
+}

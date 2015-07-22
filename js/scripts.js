@@ -2,11 +2,11 @@ $( document ).ready(function() {
     $('#username').mouseover(function() {
     	$('#username').css('width', $('#username').outerWidth());
 		$('.theUsernameSpan').hide();
-		$('.logoutIcon').show()
-	})
+		$('.logoutIcon').show();
+	});
 
 	$('#username').mouseleave(function() {
-		$('.logoutIcon').hide()
+		$('.logoutIcon').hide();
 		$('.theUsernameSpan').show();
-	})
+	});
 });

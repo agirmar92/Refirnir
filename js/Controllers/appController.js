@@ -14,15 +14,15 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 
 		$scope.eventsButton = function() {
 			$location.path("/boltar");
-		}
+		};
 
 		$scope.createEventButton = function() {
 			// TODO
-		}
+		};
 
 		$scope.logoutButton = function() {
 			// TODO
-		}
+		};
 
 		$scope.$watch(function() {
 		  	// This is for convenience, to notify if Facebook is loaded and ready to go.
@@ -62,7 +62,7 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 					});
 				});
 	    	}
-		}
+		};
 
 	    $scope.me = function() {
 	    	var userObject =    { facebookID: 0,
@@ -105,7 +105,7 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 					// Dismiss byebye message after two seconds
 					$timeout(function() {
 						//
-					}, 2000)
+					}, 2000);
 				});
 			}
 		});
