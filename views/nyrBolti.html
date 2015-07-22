@@ -1,0 +1,15 @@
+<div>
+  <form novalidate class="">
+    Hvenær: <input type="date" ng-model="newEvent.dayOfEvent" required />
+    Klukkan: <input type="text" ng-model="newEvent.timeOfEvent" required />
+    Hvar: <input type="text" ng-model="newEvent.location" />
+    Hámark Refa: <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" />
+    Nánari lýsing: <textarea rows="4" cols="50" ng-model="newEvent.desc"></textarea>
+
+    <p ng-bind="newEvent.dayOfEvent"></p>
+    <p ng-bind="newEvent.timeOfEvent"></p>
+    <p ng-bind="newEvent.location"></p>
+    <p ng-bind="newEvent.maxPlayers"></p>
+    <p ng-bind="newEvent.desc"></p>
+  </form>
+</div>
