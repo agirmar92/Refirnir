@@ -3,12 +3,12 @@
     <datepicker date-format="dd/MM/yyyy">
         <input type="text" ng-model="newEvent.dateOfEvent" required />
     </datepicker>
-    Klukkan: <input type="text" ng-model="newEvent.timeOfEvent" required />
-    Hvar: <input type="text" ng-model="newEvent.location" />
-    Hámark Refa: <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" />
+    Klukkan: <input type="text" ng-model="newEvent.timeOfEvent" required /> <br>
+    Hvar: <input type="text" ng-model="newEvent.location" /> <br>
+    Hámark Refa: <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" /> <br>
     Nánari lýsing: <textarea rows="4" cols="50" ng-model="newEvent.desc"></textarea>
 
-    <p ng-bind="newEvent.dayOfEvent"></p>
+    <p ng-bind="newEvent.dateOfEvent"></p>
     <p ng-bind="newEvent.timeOfEvent"></p>
     <p ng-bind="newEvent.location"></p>
     <p ng-bind="newEvent.maxPlayers"></p>
