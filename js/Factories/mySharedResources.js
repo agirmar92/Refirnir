@@ -47,11 +47,14 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
     };
 
     factory.createEvent = function(eventObject) {
-        $rootScope.events.$add(eventObject).then(function(ref) {
-          var id = ref.key();
-          console.log("added record with id " + id);
-          console.log($rootScope.events);
-          //$rootScope.events.$indexFor(id); // returns location in the array
+        return $q(function(resolve, reject) {
+            $rootScope.events.$add(eventObject).then(function(ref) {
+                var id = ref.key();
+                console.log("added record with id " + id);
+                resolve($rootScope.events);
+            }, function(reason){
+                reject(reason);
+            });
         });
     };
 
@@ -63,8 +66,8 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
         return $q(function(resolve, reject) {
             $rootScope.events.$remove(event).then(function(result) {
                 resolve("Successfully deleted event");
-            }, function(result){
-                reject(result);
+            }, function(reason){
+                reject(reason);
             });
         });
     };

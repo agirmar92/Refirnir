@@ -28,10 +28,12 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 
 		$scope.isSigned = function(index) {
 			var theEvent = mySharedResources.getEvent(index);
-			if (theEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
-				return "glyphicon-check";
-			} else {
-				return "glyphicon-unchecked";
+			if (theEvent.signedPlayers !== undefined) {
+				if (theEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
+					return "glyphicon-check";
+				} else {
+					return "glyphicon-unchecked";
+				}
 			}
 		};
 	}

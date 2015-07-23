@@ -1,6 +1,8 @@
 <div>
   <form novalidate class="">
-    Hvenær: <input type="date" ng-model="newEvent.dayOfEvent" required />
+    <datepicker date-format="dd/MM/yyyy">
+        <input type="text" ng-model="newEvent.dateOfEvent" required />
+    </datepicker>
     Klukkan: <input type="text" ng-model="newEvent.timeOfEvent" required />
     Hvar: <input type="text" ng-model="newEvent.location" />
     Hámark Refa: <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" />
@@ -11,5 +13,7 @@
     <p ng-bind="newEvent.location"></p>
     <p ng-bind="newEvent.maxPlayers"></p>
     <p ng-bind="newEvent.desc"></p>
+
+    <input type="submit" ng-click="createEvent()" />
   </form>
 </div>

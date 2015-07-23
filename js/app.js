@@ -1,4 +1,4 @@
-var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase']);
+var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase', '720kb.datepicker']);
 
 myApp.config(['$routeProvider', 'FacebookProvider', 
 	function ($routeProvider, FacebookProvider) {
