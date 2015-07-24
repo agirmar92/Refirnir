@@ -86,6 +86,9 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
 
     factory.signAttendance = function(index) {
     	var theEvent = this.getEvent(index);
+        if (theEvent.signedPlayers === undefined) {
+            theEvent.signedPlayers = [];
+        }
         theEvent.signedPlayers.push($rootScope.user.facebookID);
         $rootScope.events.$save(theEvent).then(function(ref) {
             console.log("signed up!");

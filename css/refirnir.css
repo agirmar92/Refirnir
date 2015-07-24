@@ -38,7 +38,7 @@ body {
   background-size: 1920px 1080px;*/
 }
 .background-image {
-  background-image: url("../background.jpg");
+  background-image: url("../images/background.jpg");
   background-size: 1920px 1080px;
   display: block;
   height: inherit;
