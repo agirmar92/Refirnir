@@ -2,7 +2,6 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 	function ($scope, $rootScope, $location, $routeParams, mySharedResources) {
 		// Búa til nýjan RefaBolta
 		$scope.createEventButton = function() {
-			// TODO (sama og i appController væntanlega)
 			$location.path("/nyr-bolti");
 		};
 

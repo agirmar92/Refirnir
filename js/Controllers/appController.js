@@ -7,9 +7,12 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 		$rootScope.events = {};
 
 		// synchronize the object with a three-way data binding
-		// click on `index.html` above to see it used in the DOM!
 		angular.element(document).ready(function () {
-			mySharedResources.sync();
+			mySharedResources.sync().then(function(result) {
+				console.log(result);
+			}, function(reason) {
+				console.log(reason);
+			});
     	});
 
 		$scope.eventsButton = function() {
@@ -17,11 +20,7 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 		};
 
 		$scope.createEventButton = function() {
-			// TODO
-		};
-
-		$scope.logoutButton = function() {
-			// TODO
+			$location.path("/nyr-bolti");
 		};
 
 		$scope.$watch(function() {

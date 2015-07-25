@@ -10,12 +10,24 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 								 signedPlayers: { 0: "" },
 								 timeOfEvent: ""  };
 
+			$scope.today = function() {
+				$scope.newEvent.dateOfEvent = new Date();
+			};
+			$scope.today();
+
+			$scope.toggleMin = function() {
+				$scope.minDate = $scope.minDate ? null : new Date();
+			};
+			$scope.toggleMin();
+
 			$scope.createEvent = function() {
 				$scope.newEvent.creator = $rootScope.user.facebookID;
 				$scope.newEvent.dateCreated = (new Date()).toLocaleDateString();
+				$scope.newEvent.dateOfEvent = $scope.newEvent.dateOfEvent.toLocaleDateString();
 				$scope.newEvent.signedPlayers = { 0: $rootScope.user.facebookID };
 				var dateSplitted = $scope.newEvent.dateOfEvent.split("/");
-				var weekDay = (new Date(dateSplitted[2], dateSplitted[1]-1, dateSplitted[0])).getDay();
+				$scope.newEvent.dateOfEvent = dateSplitted[1] + "/" + dateSplitted[0] + "/" + dateSplitted[2];
+				var weekDay = (new Date(dateSplitted[2], dateSplitted[0]-1, dateSplitted[1])).getDay();
 				switch (weekDay) {
 					case 0:
 						$scope.newEvent.dayOfEvent = "Sunnudagurinn";

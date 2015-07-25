@@ -5,12 +5,26 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
                     eventsRef: null };
 
     factory.sync = function() {
-        this.databaseRef = new Firebase("https://refirnir.firebaseio.com");
-        this.usersRef = this.databaseRef.child("users");
-        this.eventsRef = this.databaseRef.child("boltar");
-        // download the data into a local object
-        $rootScope.events = $firebaseArray(this.eventsRef);
-        $rootScope.users = $firebaseArray(this.usersRef);
+        return $q(function(resolve, reject) {
+            this.databaseRef = new Firebase("https://refirnir.firebaseio.com");
+            this.usersRef = this.databaseRef.child("users");
+            this.eventsRef = this.databaseRef.child("boltar");
+            // download the data into a local object
+            $rootScope.events = $firebaseArray(this.eventsRef);
+            $rootScope.events.$loaded().then(function() {
+                $rootScope.users = $firebaseArray(this.usersRef);
+                $rootScope.users.$loaded().then(function() {
+                    resolve("Successfully synced");
+                }).catch(function(error) {
+                    console.log("Error:", error);
+                    reject(error);
+                });
+                
+            }).catch(function(error) {
+                console.log("Error:", error);
+                reject(error);
+            });
+        });
     };
 
     /* GETTERS AND SETTERS */
@@ -25,18 +39,16 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
             $rootScope.users.$save($rootScope.user).then(function(ref) {
                 console.log("saved: ", $rootScope.user);
             });
-
-            //$rootScope.events.$indexFor(id); // returns location in the array
         });
     };
 
-    /* returns true if the user with index is found, else false */
+    /* returns the user if found, else null */
     factory.getUser = function(facebookID) {
         return $rootScope.users.$getRecord(facebookID);
     };
 
     factory.updateUser = function() {
-        $rootScope.users.save($rootScope.user).then(function() {
+        $rootScope.users.$save($rootScope.user).then(function() {
             console.log("user info (picture most likely) updated");
         });
     };

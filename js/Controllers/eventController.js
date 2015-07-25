@@ -4,31 +4,12 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 		$scope.editing = false;
 
 		angular.element(document).ready(function () {
-			if ($routeParams.ID === undefined) {
-				$scope.currentEvent = {	 desc: "",
-										 creator: $rootScope.user.facebookID,
-										 dateCreated: "",
-										 dateOfEvent: "",
-										 dayOfEvent: "",
-										 location: "",
-										 maxPlayers: 0,
-										 signedPlayers: { 0: $rootScope.user.facebookID },
-										 timeOfEvent: ""  };
-
-				//mySharedResources.createEvent(prufa);
-				$scope.editing = true;
-			} else {
-	        	$scope.currentEvent = mySharedResources.getEvent($routeParams.ID);
-	        	if (!$rootScope.loggedIn || $scope.currentEvent === null) {
-	        		$location.path("/boltar");
-	        	}
-	        	$scope.editing = false;
-			}
+        	$scope.currentEvent = mySharedResources.getEvent($routeParams.ID);
+        	if (!$rootScope.loggedIn || $scope.currentEvent === null) {
+        		$location.path("/boltar");
+        	}
+        	$scope.editing = false;
     	});
-
-    	$scope.getWeekDay = function() {
-    		return "Mánudagurinn";
-    	};
 
     	$scope.getName = function(id) {
     		return mySharedResources.getUser(id).name;
@@ -40,13 +21,6 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 
     	$scope.saveEvent = function() {
     		//
-    		$scope.editing = false;
-    	};
-
-    	$scope.createEvent = function() {
-    		var today = new Date();
-    		$scope.currentEvent.dateCreated = today.toLocaleDateString();
-    		mySharedResources.createEvent($scope.currentEvent);
     		$scope.editing = false;
     	};
 

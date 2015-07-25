@@ -1,8 +1,8 @@
 <div>
   <form novalidate class="">
-    <datepicker date-format="dd/MM/yyyy">
-        <input type="text" ng-model="newEvent.dateOfEvent" required />
-    </datepicker>
+    <div style="display:inline-block; min-height:290px;">
+      <datepicker ng-model="newEvent.dateOfEvent" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+    </div>
     Klukkan: <input type="text" ng-model="newEvent.timeOfEvent" required /> <br>
     Hvar: <input type="text" ng-model="newEvent.location" /> <br>
     Hámark Refa: <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" /> <br>

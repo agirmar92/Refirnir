@@ -14,7 +14,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bower_components/angularjs-datepicker/src/css/angular-datepicker.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/refirnir.css" rel="stylesheet">
@@ -36,7 +35,7 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="javascript: void(0)" ng-click="eventsButton()">Boltar</a></li>
-                  <li><a href="javascript: void(0)" ng-click="">Stofna bolta</a>
+                  <li><a href="javascript: void(0)" ng-click="createEventButton()">Stofna bolta</a>
                   <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span class="theUsernameSpan" ng-bind="user.name + ' Refur'"></span>
                   <span style="display: none" class="logoutIcon glyphicon glyphicon-log-out"></span></a></li>
                   <img ng-src="{{user.picture}}" ng-show="loggedIn" alt="" class="profilePicture">
@@ -66,12 +65,12 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
   
     <!-- TO BE MINIFIED -->
     <script src="js/app.js" type="text/javascript"></script>

@@ -249,3 +249,5 @@ input,
 textarea {
   color: black;
 }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
