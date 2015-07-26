@@ -26,7 +26,7 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 				$scope.newEvent.signedPlayers = { 0: $rootScope.user.facebookID };
 				var dateSplitted = $scope.date.split("/");
 				$scope.newEvent.dateOfEvent = dateSplitted[1] + "/" + dateSplitted[0] + "/" + dateSplitted[2];
-				$scope.newEvent.timeOfEvent = $scope.inputTime.getHours() + ":" + $scope.inputTime.getMinutes();
+				$scope.newEvent.timeOfEvent = $scope.inputTime.getHoursTwoDigits() + ":" + $scope.inputTime.getMinutesTwoDigits();
 				var weekDay = (new Date(dateSplitted[2], dateSplitted[0]-1, dateSplitted[1])).getDay();
 				switch (weekDay) {
 					case 0:
