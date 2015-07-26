@@ -26,7 +26,10 @@
 
   </div>
 
-  <p>{{currentEvent.desc}}</p>
+  <div class ="row">
+    <img ng-src="{{getPicture(currentEvent.creator)}}" ng-show="loggedIn" alt="" class="profilePicture" style="display:inline;">
+    <p class="triangle-right left" style="display:inline;">{{currentEvent.desc}}</p>
+  </div>
 
   <p class="lead">
     <a ng-click="deleteEventButton()" ng-show="isCreator()" class="btn btn-lg btn-default takki3">Eyða</a>
