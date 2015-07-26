@@ -2,16 +2,16 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 	function ($scope, $rootScope, $location, mySharedResources) {
 			$scope.newEvent = {	 desc: "",
 								 creator: "",
-								 dateCreated: "",
 								 dateOfEvent: "",
 								 dayOfEvent: "",
 								 location: "",
-								 maxPlayers: 0,
+								 maxPlayers: 8,
 								 signedPlayers: { 0: "" },
 								 timeOfEvent: ""  };
+			$scope.inputTime = "";
 
 			$scope.today = function() {
-				$scope.newEvent.dateOfEvent = new Date();
+				$scope.date = new Date();
 			};
 			$scope.today();
 
@@ -22,11 +22,11 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 
 			$scope.createEvent = function() {
 				$scope.newEvent.creator = $rootScope.user.facebookID;
-				$scope.newEvent.dateCreated = (new Date()).toLocaleDateString();
-				$scope.newEvent.dateOfEvent = $scope.newEvent.dateOfEvent.toLocaleDateString();
+				$scope.date = $scope.date.toLocaleDateString();
 				$scope.newEvent.signedPlayers = { 0: $rootScope.user.facebookID };
-				var dateSplitted = $scope.newEvent.dateOfEvent.split("/");
+				var dateSplitted = $scope.date.split("/");
 				$scope.newEvent.dateOfEvent = dateSplitted[1] + "/" + dateSplitted[0] + "/" + dateSplitted[2];
+				$scope.newEvent.timeOfEvent = $scope.inputTime.getHours() + ":" + $scope.inputTime.getMinutes();
 				var weekDay = (new Date(dateSplitted[2], dateSplitted[0]-1, dateSplitted[1])).getDay();
 				switch (weekDay) {
 					case 0:

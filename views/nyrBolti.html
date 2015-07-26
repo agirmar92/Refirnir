@@ -1,19 +1,21 @@
 <div>
-  <form novalidate class="">
-    <div style="display:inline-block; min-height:290px;">
-      <datepicker ng-model="newEvent.dateOfEvent" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
-    </div>
-    Klukkan: <input type="text" ng-model="newEvent.timeOfEvent" required /> <br>
-    Hvar: <input type="text" ng-model="newEvent.location" /> <br>
-    Hámark Refa: <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" /> <br>
-    Nánari lýsing: <textarea rows="4" cols="50" ng-model="newEvent.desc"></textarea>
 
-    <p ng-bind="newEvent.dateOfEvent"></p>
-    <p ng-bind="newEvent.timeOfEvent"></p>
-    <p ng-bind="newEvent.location"></p>
-    <p ng-bind="newEvent.maxPlayers"></p>
-    <p ng-bind="newEvent.desc"></p>
+  <h1 class="cover-heading">Stofna Bolta</h1>
 
-    <input type="submit" ng-click="createEvent()" />
+  <form novalidate class="newEvent">
+    <p class="lead labelFox">Hvaða dag? <span class="glyphicon glyphicon-calendar foxGlyph"></span></p>
+    <div style="display:inline-block;">
+      <datepicker ng-model="date" min-date="minDate" show-weeks="false" class="well well-sm foxDate"></datepicker>
+    </div> <br>
+    <p class="lead labelFox">Klukkan hvað? <span class="glyphicon glyphicon-time foxGlyph"></span></p>
+    <input type="time" ng-model="inputTime" style="width:185px;" required /> <br>
+    <p class="lead labelFox">Hvar? <span class="glyphicon glyphicon-map-marker foxGlyph"></span></p>
+    <input type="text" placeholder="Eskifjörður" ng-model="newEvent.location" style="width:185px;" required /> <br>
+    <p class="lead labelFox">Hversu margir refir? <span class="glyphicon glyphicon-user foxGlyph"></span></p>
+    <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" required /> <br>
+    <p class="lead labelFox">Nánari lýsing <span class="glyphicon glyphicon-info-sign foxGlyph"></span></p>
+    <textarea rows="4" cols="50" ng-model="newEvent.desc"></textarea> <br>
+
+    <input class="btn btn-lg btn-default takki2" style="margin: 10px;" type="submit" ng-click="createEvent()" value="Stofna" />
   </form>
 </div>
