@@ -26,7 +26,7 @@
 
   </div>
 
-  <div class="row eventMessage">
+  <div class="row eventMessage" ng-hide="currentEvent.desc.length === 0">
     <div class="col-lg-2 comment-left">
       <img ng-src="{{getPicture(currentEvent.creator)}}" ng-show="loggedIn" alt="" class="profilePicture">
     </div>

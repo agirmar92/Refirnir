@@ -63,7 +63,7 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
             $rootScope.events.$add(eventObject).then(function(ref) {
                 var id = ref.key();
                 console.log("added record with id " + id);
-                resolve($rootScope.events);
+                resolve(id);
             }, function(reason){
                 reject(reason);
             });

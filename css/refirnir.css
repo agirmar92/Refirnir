@@ -383,5 +383,5 @@ button.btn.btn-default.btn-sm.active {
 }
 
 input.ng-invalid.ng-touched {
-  background-color: #FA787E;
+  border: 2px solid red;
 }
