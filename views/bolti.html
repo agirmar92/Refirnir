@@ -26,9 +26,13 @@
 
   </div>
 
-  <div class ="row">
-    <img ng-src="{{getPicture(currentEvent.creator)}}" ng-show="loggedIn" alt="" class="profilePicture" style="display:inline;">
-    <p class="triangle-right left" style="display:inline;">{{currentEvent.desc}}</p>
+  <div class="row eventMessage">
+    <div class="col-lg-2 comment-left">
+      <img ng-src="{{getPicture(currentEvent.creator)}}" ng-show="loggedIn" alt="" class="profilePicture">
+    </div>
+    <div class="col-lg-10 comment-right">
+      <p class="triangle-right left">{{currentEvent.desc}}</p>
+    </div>
   </div>
 
   <p class="lead">
