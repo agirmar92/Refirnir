@@ -1,4 +1,4 @@
-var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase', 'ui.bootstrap']);
+var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase', 'ui.bootstrap' ]);
 
 myApp.config(['$routeProvider', 'FacebookProvider', 
 	function ($routeProvider, FacebookProvider) {
@@ -12,7 +12,6 @@ myApp.config(['$routeProvider', 'FacebookProvider',
 			});
 
 		var myAppId = '476258182539942';
-	    //FacebookProvider.setAppId('myAppId');
      
 	    /**
 	      * After setting appId you need to initialize the module.

@@ -1,5 +1,5 @@
-myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'mySharedResources', 
-	function ($scope, $rootScope, $location, mySharedResources) {
+myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'mySharedResources', '$timeout',
+	function ($scope, $rootScope, $location, mySharedResources, $timeout) {
 			$scope.newEvent = {	 desc: "",
 								 creator: "",
 								 dateOfEvent: "",
@@ -58,6 +58,10 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 					}, function(reason) {
 						console.log(reason);
 					});
+				} else {
+					var submitButton = angular.element('.btn.btn-lg.btn-default.takki2');
+					submitButton.addClass('shake animated');
+					$timeout(function(){ submitButton.removeClass('shake animated'); }, 1000);
 				}
 
 			};
