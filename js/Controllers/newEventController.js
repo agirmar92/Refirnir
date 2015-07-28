@@ -23,12 +23,10 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 			$scope.createEvent = function() {
 				if ($scope.isValid()) {
 					$scope.newEvent.creator = $rootScope.user.facebookID;
-					$scope.date = $scope.date.toLocaleDateString();
 					$scope.newEvent.signedPlayers = { 0: $rootScope.user.facebookID };
-					var dateSplitted = $scope.date.split("/");
-					$scope.newEvent.dateOfEvent = dateSplitted[1] + "/" + dateSplitted[0] + "/" + dateSplitted[2];
+					$scope.newEvent.dateOfEvent = $scope.date.getDate() + "/" + ($scope.date.getMonth()+1) + "/" + $scope.date.getFullYear();
 					$scope.newEvent.timeOfEvent = $scope.inputTime.getHoursTwoDigits() + ":" + $scope.inputTime.getMinutesTwoDigits();
-					var weekDay = (new Date(dateSplitted[2], dateSplitted[0]-1, dateSplitted[1])).getDay();
+					var weekDay = $scope.date.getDay();
 					switch (weekDay) {
 						case 0:
 							$scope.newEvent.dayOfEvent = "Sunnudagurinn";
