@@ -8,9 +8,9 @@
       <datepicker ng-model="date" min-date="minDate" show-weeks="false" class="well well-sm foxDate"></datepicker>
     </div> <br>
     <p class="lead labelFox">Klukkan hvað? <span class="glyphicon glyphicon-time foxGlyph"></span></p>
-    <input type="time" ng-model="inputTime" style="width:185px;" required /> <br>
+    <input id="timeBox" type="time" ng-model="inputTime" style="width:185px;" required /> <br>
     <p class="lead labelFox">Hvar? <span class="glyphicon glyphicon-map-marker foxGlyph"></span></p>
-    <input type="text" placeholder="Eskifjörður" ng-model="newEvent.location" style="width:185px;" required /> <br>
+    <input id="locationBox" type="text" placeholder="Eskifjörður" ng-model="newEvent.location" style="width:185px;" required /> <br>
     <p class="lead labelFox">Hversu margir refir? <span class="glyphicon glyphicon-user foxGlyph"></span></p>
     <input type="number" min="2" max="30" ng-model="newEvent.maxPlayers" required /> <br>
     <p class="lead labelFox">Nánari lýsing <span class="glyphicon glyphicon-info-sign foxGlyph"></span></p>

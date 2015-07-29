@@ -60,6 +60,14 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 					});
 				} else {
 					var submitButton = angular.element('.btn.btn-lg.btn-default.takki2');
+					var timeBox = angular.element('#timeBox');
+					var locationBox = angular.element('#locationBox');
+					if (!timeBox.hasClass('ng-valid')) {
+						timeBox.addClass('ng-invalid ng-touched');
+					}
+					if (!locationBox.hasClass('ng-valid')) {
+						locationBox.addClass('ng-invalid ng-touched');
+					}
 					submitButton.addClass('shake animated');
 					$timeout(function(){ submitButton.removeClass('shake animated'); }, 1000);
 				}
