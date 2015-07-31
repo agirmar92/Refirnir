@@ -35,6 +35,20 @@
     </div>
   </div>
 
+  <div class="row eventMessage" ng-repeat="comment in comments">
+    <div class="col-lg-2 comment-left">
+      <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture">
+    </div>
+    <div class="col-lg-10 comment-right">
+      <p class="triangle-right left">{{comment.text}}</p>
+    </div>
+  </div>
+
+  <div class="row eventMessage">
+    <textarea rows="4" cols="50" ng-model="newComment" placeholder="Hefuru eitthvað að segja refur?"></textarea> <br>
+    <div class="btn btn-lg btn-default takki2" style="margin: 10px;" ng-click="postComment()" value="Senda"></div>
+  </div>
+
   <p class="lead">
     <a ng-click="deleteEventButton()" ng-show="isCreator()" class="btn btn-lg btn-default takki3">Eyða</a>
   </p>

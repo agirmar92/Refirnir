@@ -3,6 +3,17 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 		$scope.currentEvent = {};
 		$scope.editing = false;
 
+        /*temp*/
+        $scope.newComment = "";
+        $scope.comments = [];
+        $scope.postComment = function() {
+            var commentToPost = {};
+            commentToPost.text = $scope.newComment;
+            commentToPost.author = $rootScope.user.facebookID;
+            $scope.comments.push(commentToPost);
+            $scope.newComment = "";
+        };
+
 		angular.element(document).ready(function () {
         	$scope.currentEvent = mySharedResources.getEvent($routeParams.ID);
         	if (!$rootScope.loggedIn || $scope.currentEvent === null) {
