@@ -4,14 +4,19 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 		$scope.editing = false;
 
         /*temp*/
+        function Comment(text) {
+            this.text = text;
+            this.author = $rootScope.user.facebookID;
+        }
+
         $scope.newComment = "";
         $scope.comments = [];
         $scope.postComment = function() {
-            var commentToPost = {};
-            commentToPost.text = $scope.newComment;
-            commentToPost.author = $rootScope.user.facebookID;
-            $scope.comments.push(commentToPost);
-            $scope.newComment = "";
+            if($scope.newComment !== "") {
+                var commentToPost = new Comment($scope.newComment);
+                $scope.comments.push(commentToPost);
+                $scope.newComment = "";
+            }
         };
 
 		angular.element(document).ready(function () {
