@@ -23,6 +23,22 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 			$location.path("/nyr-bolti");
 		};
 
+		$scope.selectedButton = function(where) {
+			if (where === "nyr-bolti") {
+				if ($location.$$path === "/nyr-bolti") {
+					return "active";
+				} else {
+					return "";
+				}
+			} else {
+				if ($location.$$path === "/nyr-bolti") {
+					return "";
+				} else {
+					return "active";
+				}
+			}
+		};
+
 		$scope.$watch(function() {
 		  	// This is for convenience, to notify if Facebook is loaded and ready to go.
 		  	return Facebook.isReady();

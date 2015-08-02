@@ -35,8 +35,8 @@
               <a href="javascript: void(0)" ng-click="eventsButton()"><h1 class="masthead-brand">Refirnir <h3 class="masthead-brand tvonull">2.0</h3></h1></a>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="javascript: void(0)" ng-click="eventsButton()">Boltar</a></li>
-                  <li><a href="javascript: void(0)" ng-click="createEventButton()">Stofna bolta</a>
+                  <li ng-class="selectedButton('boltar')"><a href="javascript: void(0)" ng-click="eventsButton()">Boltar</a></li>
+                  <li ng-class="selectedButton('nyr-bolti')"><a href="javascript: void(0)" ng-click="createEventButton()">Stofna bolta</a>
                   <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span class="theUsernameSpan" ng-bind="user.name + ' Refur'"></span>
                   <span style="display: none" class="logoutIcon glyphicon glyphicon-log-out"></span></a></li>
                   <img ng-src="{{user.picture}}" ng-show="loggedIn" alt="" class="profilePicture">
