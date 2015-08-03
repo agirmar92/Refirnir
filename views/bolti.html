@@ -36,11 +36,24 @@
   </div>
 
   <div class="row eventMessage" ng-repeat="comment in comments">
-    <div class="col-lg-2 comment-left">
-      <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture">
+    <div ng-hide="isAuthor(comment.author)">
+      <div class="col-lg-2 comment-left">
+        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture">
+      </div>
+
+      <div class="col-lg-10 comment-right">
+        <p class="triangle-right left">{{comment.text}}</p>
+      </div>
     </div>
-    <div class="col-lg-10 comment-right">
-      <p class="triangle-right left">{{comment.text}}</p>
+
+    <div ng-show="isAuthor(comment.author)">
+      <div class="col-lg-10 comment-left">
+        <p class="triangle-right right">{{comment.text}}</p>
+      </div>
+
+      <div class="col-lg-2 comment-right">
+        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture">
+      </div>
     </div>
   </div>
 

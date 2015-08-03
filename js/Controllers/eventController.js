@@ -54,5 +54,9 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 		$scope.isCreator = function() {
 			return ($scope.currentEvent.creator === $rootScope.user.facebookID);
 		};
+
+        $scope.isAuthor = function(id) {
+            return (id === $rootScope.user.facebookID);
+        };
 	}
 ]);

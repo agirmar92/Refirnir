@@ -307,6 +307,11 @@ button.btn.btn-default.btn-sm.active {
   background:#37859F;
 }
 
+.triangle-right.right {
+  margin-right:40px;
+  background:#F48C1F;
+}
+
 /* THE TRIANGLE
 ------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -355,7 +360,7 @@ button.btn.btn-default.btn-sm.active {
   bottom:auto;
   left:auto;
   border-width:15px 0 0 40px; /* vary these values to change the angle of the vertex */
-  border-color:transparent #37859F ;
+  border-color:transparent #F48C1F ;
 }
 
 .triangle-right {
