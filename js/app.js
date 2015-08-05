@@ -20,3 +20,7 @@ myApp.config(['$routeProvider', 'FacebookProvider',
 	    FacebookProvider.init(myAppId);
 	}
 ]);
+
+myApp.run(function() {
+	// TODO: Move the sync function here!!
+});

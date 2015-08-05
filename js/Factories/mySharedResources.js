@@ -44,7 +44,13 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
 
     /* returns the user if found, else null */
     factory.getUser = function(facebookID) {
-        return $rootScope.users.$getRecord(facebookID);
+        $rootScope.users.$loaded(
+            function(x) {
+                return $rootScope.users.$getRecord(facebookID);
+            }, function(error) {
+                console.error("Error:", error);
+            }
+        );
     };
 
     factory.updateUser = function() {
@@ -55,7 +61,13 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
 
     factory.getEvent = function(index) {
     	// athuga hvort bolti(index) sé í events fylkinu
-        return $rootScope.events.$getRecord(index);
+        $rootScope.events.$loaded(
+            function(x) {
+                return $rootScope.events.$getRecord(index);
+            }, function(error) {
+                console.error("Error:", error);
+            }
+        );
     };
 
     factory.createEvent = function(eventObject) {

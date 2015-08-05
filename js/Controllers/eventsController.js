@@ -12,7 +12,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 
 		$scope.checkBoxClicked = function(index) {
 			var element = angular.element(document.querySelector('#checkbox-' + index));
-			if (element.hasClass("glyphicon-unchecked")) {
+			if ($scope.isSigned(index)) {
 				// Skra hann i boltann og haka við
 				mySharedResources.signAttendance(index);
 				element.removeClass('glyphicon-unchecked');
@@ -34,7 +34,6 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 					return "glyphicon-unchecked";
 				}
 			}
-			return "glyphicon-unchecked";
 		};
 	}
 ]);
