@@ -1,31 +1,6 @@
 /* Factories, mun skila mock gögnum til að byrja með */
 myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $rootScope, $q) {
-    var factory = { databaseRef: null,
-                    usersRef: null,
-                    eventsRef: null };
-
-    factory.sync = function() {
-        return $q(function(resolve, reject) {
-            this.databaseRef = new Firebase("https://refirnir.firebaseio.com");
-            this.usersRef = this.databaseRef.child("users");
-            this.eventsRef = this.databaseRef.child("boltar");
-            // download the data into a local object
-            $rootScope.events = $firebaseArray(this.eventsRef);
-            $rootScope.events.$loaded().then(function() {
-                $rootScope.users = $firebaseArray(this.usersRef);
-                $rootScope.users.$loaded().then(function() {
-                    resolve("Successfully synced");
-                }).catch(function(error) {
-                    console.log("Error:", error);
-                    reject(error);
-                });
-                
-            }).catch(function(error) {
-                console.log("Error:", error);
-                reject(error);
-            });
-        });
-    };
+    var factory = {};
 
     /* GETTERS AND SETTERS */
 
@@ -43,14 +18,20 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
     };
 
     /* returns the user if found, else null */
+    factory.getLoggedUser = function(facebookID) {
+        return $q(function(resolve, reject) {
+            $rootScope.users.$loaded(
+                function(users) {
+                    resolve(users.$getRecord(facebookID));
+                }, function(error) {
+                    reject(error);
+                }
+            );
+        });
+    };
+
     factory.getUser = function(facebookID) {
-        $rootScope.users.$loaded(
-            function(x) {
-                return $rootScope.users.$getRecord(facebookID);
-            }, function(error) {
-                console.error("Error:", error);
-            }
-        );
+        return $rootScope.users.$getRecord(facebookID);
     };
 
     factory.updateUser = function() {
@@ -61,13 +42,7 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
 
     factory.getEvent = function(index) {
     	// athuga hvort bolti(index) sé í events fylkinu
-        $rootScope.events.$loaded(
-            function(x) {
-                return $rootScope.events.$getRecord(index);
-            }, function(error) {
-                console.error("Error:", error);
-            }
-        );
+        return $rootScope.events.$getRecord(index);
     };
 
     factory.createEvent = function(eventObject) {
@@ -95,16 +70,6 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
             });
         });
     };
-
-    /*factory.getEvents = function(objectToSync) {
-        // for use later!!
-        var today = new Date();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        var weekDay = today.getDay(); //Sunday is 0!
-
-        return this.syncedEvents;
-    }*/
 
     /* EXTRAS */
 

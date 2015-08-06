@@ -7,7 +7,7 @@
     <div class="col-lg-6" style="height:390px;">
       <p style="background-color: green; margin: 0; height:100%; border-radius: 35px;">Þetta á að vera völlur</p>
     </div>
-
+    
     <div class="col-lg-6">
       <table class="table table-hover boltar">
         <thead>
@@ -55,12 +55,12 @@
         <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture">
       </div>
     </div>
-  </div>
+  </div> 
 
   <div class="row eventMessage">
     <textarea ng-enter="postComment()" rows="4" cols="50" ng-model="newComment" placeholder="Hefuru eitthvað að segja refur?"></textarea> <br>
     <div class="btn btn-lg btn-default takki2" style="margin: 10px;" ng-click="postComment()"><span>Senda</span></div>
-  </div>
+  </div> 
 
   <p class="lead">
     <a ng-click="deleteEventButton()" ng-show="isCreator()" class="btn btn-lg btn-default takki3">Eyða</a>

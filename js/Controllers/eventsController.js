@@ -12,7 +12,7 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 
 		$scope.checkBoxClicked = function(index) {
 			var element = angular.element(document.querySelector('#checkbox-' + index));
-			if ($scope.isSigned(index)) {
+			if (element.hasClass("glyphicon-unchecked")) {
 				// Skra hann i boltann og haka við
 				mySharedResources.signAttendance(index);
 				element.removeClass('glyphicon-unchecked');
@@ -26,14 +26,22 @@ myApp.controller('eventsController', [ '$scope', '$rootScope', '$location', '$ro
 		};
 
 		$scope.isSigned = function(index) {
-			var theEvent = mySharedResources.getEvent(index);
-			if (theEvent.signedPlayers !== undefined) {
-				if (theEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
-					return "glyphicon-check";
-				} else {
-					return "glyphicon-unchecked";
+			if ($rootScope.user) {
+				var theEvent = mySharedResources.getEvent(index);
+				if (theEvent) {
+					if (theEvent.signedPlayers !== undefined) {
+						if (theEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
+							return "glyphicon-check";
+						} else {
+							return "glyphicon-unchecked";
+						}
+					} else {
+						return "glyphicon-unchecked";
+					}
 				}
+				return "glyphicon-unchecked";
 			}
+			return "glyphicon-unchecked";
 		};
 	}
 ]);

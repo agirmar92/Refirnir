@@ -21,6 +21,21 @@ myApp.config(['$routeProvider', 'FacebookProvider',
 	}
 ]);
 
-myApp.run(function() {
-	// TODO: Move the sync function here!!
+myApp.run(function($rootScope, $firebaseArray, $firebaseObject) {
+    var databaseRef = new Firebase("https://refirnir.firebaseio.com");
+    var usersRef = databaseRef.child("users");
+    var eventsRef = databaseRef.child("boltar");
+    // download the data into a local object
+    $rootScope.events = $firebaseArray(eventsRef);
+    $rootScope.events.$loaded().then(function() {
+        $rootScope.users = $firebaseArray(usersRef);
+        $rootScope.users.$loaded().then(function() {
+            console.log("Successfully synced");
+        }).catch(function(error) {
+            console.log("Error:", error);
+        });
+        
+    }).catch(function(error) {
+        console.log("Error:", error);
+    });
 });

@@ -3,17 +3,6 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 		$rootScope.loggedIn = false;
 		$rootScope.facebookReady = false;
 		$rootScope.user = {};
-		$rootScope.users = {};
-		$rootScope.events = {};
-
-		// synchronize the object with a three-way data binding
-		angular.element(document).ready(function () {
-			mySharedResources.sync().then(function(result) {
-				console.log(result);
-			}, function(reason) {
-				console.log(reason);
-			});
-    	});
 
 		$scope.eventsButton = function() {
 			$location.path("/boltar");
@@ -41,7 +30,7 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 
 		$scope.$watch(function() {
 		  	// This is for convenience, to notify if Facebook is loaded and ready to go.
-		  	return Facebook.isReady();
+		  	return (Facebook.isReady() && !$rootScope.facebookReady);
 		}, function(newVal) {
 			// You might want to use this to disable/show/hide buttons and else
 			$rootScope.facebookReady = true;
@@ -90,15 +79,17 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 				Facebook.api('/me/picture', function(response) {
 					console.log(response);
 					userObject.picture = response.data.url;
-					$rootScope.user = mySharedResources.getUser(userObject.facebookID);
-					if ($rootScope.user === null) {
-						userObject.wins = 0;
-						userObject.loss = 0;
-						mySharedResources.createUser(userObject);
-					} else if ($rootScope.user.picture !== userObject.picture) {
-						$rootScope.user.picture = userObject.picture;
-						mySharedResources.updateUser();
-					}
+					mySharedResources.getLoggedUser(userObject.facebookID).then(function(result) {
+						$rootScope.user = result;
+						if ($rootScope.user === null) {
+							userObject.wins = 0;
+							userObject.loss = 0;
+							mySharedResources.createUser(userObject);
+						} else if ($rootScope.user.picture !== userObject.picture) {
+							$rootScope.user.picture = userObject.picture;
+							mySharedResources.updateUser();
+						}
+					});
 				});
 			});
 
