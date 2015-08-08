@@ -28,7 +28,7 @@
 
   <div class="row eventMessage" ng-hide="currentEvent.desc.length === 0">
     <div class="col-lg-2 comment-left">
-      <img ng-src="{{getPicture(currentEvent.creator)}}" ng-show="loggedIn" alt="" class="profilePicture">
+      <img ng-src="{{getPicture(currentEvent.creator)}}" alt="" class="profilePicture" data-toggle="tooltip" title="{{getName(currentEvent.creator)}}">
     </div>
     <div class="col-lg-10 comment-right">
       <p class="triangle-right left">{{currentEvent.desc}}</p>

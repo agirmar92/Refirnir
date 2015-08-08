@@ -1,5 +1,7 @@
 $( document ).ready(function() {
-	$('[data-toggle="tooltip"]').tooltip();
+	$(document).ready(function() {
+	    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+	});
 	
     $('#username').mouseover(function() {
     	$('#username').css('width', $('#username').outerWidth());
