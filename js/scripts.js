@@ -1,4 +1,6 @@
 $( document ).ready(function() {
+	$('[data-toggle="tooltip"]').tooltip();
+	
     $('#username').mouseover(function() {
     	$('#username').css('width', $('#username').outerWidth());
 		$('.theUsernameSpan').hide();

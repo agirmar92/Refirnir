@@ -10,7 +10,7 @@
 
   <div id="someEvent" ng-show="events.length !== 0">
     <h1 class="cover-heading">Refaboltar <span class="glyphicon glyphicon-th-list foxGlyph" aria-hidden="true"></span></h1>
-    <p class="lead">Smelltu á refabolta til að fá frekari upplýsingar</p>
+    <p class="lead" style="color: #C7C7C7;">Smelltu á refabolta til að fá frekari upplýsingar</p>
     <div class="table-responsive">
       <table class="table table-hover boltar">
         <thead>
@@ -32,7 +32,6 @@
             <td ng-if="event.signedPlayers !== undefined">{{event.signedPlayers.length}}/{{event.maxPlayers}}</td>
             <td ng-if="event.signedPlayers === undefined">0/{{event.maxPlayers}}</td>
             <td><a href="javascript: void(0)" ng-click="checkBoxClicked(event.$id)" class="checkbox"><span id="checkbox-{{event.$id}}" class="glyphicon" ng-class="isSigned(event.$id)" aria-hidden="true"></a></td>
-            <!-- <td><input type="checkbox" ng-model="isSigned(event.$id)"></td> -->
           </tr>
         </tbody>
       </table>

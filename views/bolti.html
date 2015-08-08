@@ -38,7 +38,7 @@
   <div class="row eventMessage" ng-repeat="comment in comments">
     <div ng-hide="isAuthor(comment.author)">
       <div class="col-lg-2 comment-left">
-        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture">
+        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
       </div>
 
       <div class="col-lg-10 comment-right">
@@ -52,7 +52,7 @@
       </div>
 
       <div class="col-lg-2 comment-right">
-        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture">
+        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
       </div>
     </div>
   </div> 
