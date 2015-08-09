@@ -71,6 +71,17 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
         });
     };
 
+    factory.postComment = function(event, comment) {
+        // TODO: gera message ad firebaseObject og nota $add.
+        if (event.messages === undefined) {
+            event.messages = [];
+        }
+        event.messages.push(comment);
+        $rootScope.events.$save(event).then(function() {
+            console.log("comment added");
+        });
+    };
+
     /* EXTRAS */
 
     factory.signAttendance = function(index) {

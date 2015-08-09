@@ -26,16 +26,7 @@
 
   </div>
 
-  <div class="row eventMessage" ng-hide="currentEvent.desc.length === 0">
-    <div class="col-lg-2 comment-left">
-      <img ng-src="{{getPicture(currentEvent.creator)}}" alt="" class="profilePicture" data-toggle="tooltip" title="{{getName(currentEvent.creator)}}">
-    </div>
-    <div class="col-lg-10 comment-right">
-      <p class="triangle-right left">{{currentEvent.desc}}</p>
-    </div>
-  </div>
-
-  <div class="row eventMessage" ng-repeat="comment in comments">
+  <div class="row eventMessage" ng-repeat="comment in currentEvent.messages">
     <div ng-hide="isAuthor(comment.author)">
       <div class="col-lg-2 comment-left">
         <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
@@ -58,7 +49,7 @@
   </div> 
 
   <div class="row eventMessage">
-    <textarea ng-enter="postComment()" rows="4" cols="50" ng-model="newComment" placeholder="Hefuru eitthvað að segja refur?"></textarea> <br>
+    <textarea ng-enter="postComment()" rows="4" cols="50" ng-model="newComment" placeholder="Hefuru eitthvað að segja refur?" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hefuru eitthvað að segja refur?'"></textarea> <br>
     <div class="btn btn-lg btn-default takki2" style="margin: 10px;" ng-click="postComment()"><span>Senda</span></div>
   </div> 
 

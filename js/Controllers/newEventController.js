@@ -1,7 +1,6 @@
 myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'mySharedResources', '$timeout',
 	function ($scope, $rootScope, $location, mySharedResources, $timeout) {
-			$scope.newEvent = {	 desc: "",
-								 creator: "",
+			$scope.newEvent = {	 creator: "",
 								 dateOfEvent: "",
 								 dayOfEvent: "",
 								 location: "",
@@ -9,6 +8,7 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 								 signedPlayers: { 0: "" },
 								 timeOfEvent: ""  };
 			$scope.inputTime = "";
+			$scope.desc = "";
 
 			$scope.today = function() {
 				$scope.date = new Date();
@@ -26,6 +26,10 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 					$scope.newEvent.signedPlayers = { 0: $rootScope.user.facebookID };
 					$scope.newEvent.dateOfEvent = $scope.date.getDate() + "/" + ($scope.date.getMonth()+1) + "/" + $scope.date.getFullYear();
 					$scope.newEvent.timeOfEvent = $scope.inputTime.getHoursTwoDigits() + ":" + $scope.inputTime.getMinutesTwoDigits();
+					if ($scope.desc !== "") {
+						$scope.newEvent.messages = [ { author: $scope.newEvent.creator,
+													   text: $scope.desc } ];
+					}
 					var weekDay = $scope.date.getDay();
 					switch (weekDay) {
 						case 0:

@@ -10,11 +10,10 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
         }
 
         $scope.newComment = "";
-        $scope.comments = [];
         $scope.postComment = function() {
             if($scope.newComment !== "") {
                 var commentToPost = new Comment($scope.newComment);
-                $scope.comments.push(commentToPost);
+                mySharedResources.postComment($scope.currentEvent, commentToPost);
                 $scope.newComment = "";
             }
         };
