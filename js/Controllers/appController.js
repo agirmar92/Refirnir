@@ -36,12 +36,17 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 			$rootScope.facebookReady = true;
 		});
 
-		Facebook.getLoginStatus(function(response) {
-			if(response.status === 'connected') {
-				$rootScope.loggedIn = true;
-				$scope.me();
-			} else {
-				$rootScope.loggedIn = false;
+		$scope.$watch('synced', function(newValue, oldValue) {
+			if (newValue) {
+				// succesfully synced
+				Facebook.getLoginStatus(function(response) {
+					if(response.status === 'connected') {
+						$rootScope.loggedIn = true;
+						$scope.me();
+					} else {
+						$rootScope.loggedIn = false;
+					}
+				});
 			}
 		});
 
