@@ -29,7 +29,7 @@
   <div class="row eventMessage" ng-repeat="comment in currentEvent.messages">
     <div ng-hide="isAuthor(comment.author)">
       <div class="col-lg-2 comment-left">
-        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
+        <img ng-src="{{getPicture(comment.author)}}" alt="images/not-found.png" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
       </div>
 
       <div class="col-lg-10 comment-right">
@@ -43,12 +43,12 @@
       </div>
 
       <div class="col-lg-2 comment-right">
-        <img ng-src="{{getPicture(comment.author)}}" alt="" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
+        <img ng-src="{{getPicture(comment.author)}}" alt="images/not-found.png" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
       </div>
     </div>
   </div> 
 
-  <div class="row eventMessage">
+  <div class="row eventMessage" ng-show="loggedIn">
     <textarea ng-enter="postComment()" rows="4" cols="50" ng-model="newComment" placeholder="Hefuru eitthvað að segja refur?" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hefuru eitthvað að segja refur?'"></textarea> <br>
     <div class="btn btn-lg btn-default takki2" style="margin: 10px;" ng-click="postComment()"><span>Senda</span></div>
   </div> 

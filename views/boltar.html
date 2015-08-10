@@ -1,9 +1,9 @@
-<div ng-show="loggedIn">
+<div>
   <div id="noEvent" ng-show="events.length === 0">
     <h1 class="cover-heading">Enginn bolti <span class="glyphicon glyphicon-thumbs-down foxGlyph" aria-hidden="true"></span></h1>
     <p class="lead">Það er enginn bolti skráður í augnablikinu</p>
     <p class="lead">
-      <a ng-click="createEventButton()" class="btn btn-lg btn-default takki2">Stofna Refabolta</a>
+      <a ng-show="loggedIn" ng-click="createEventButton()" class="btn btn-lg btn-default takki2">Stofna Refabolta</a>
     </p>
   </div>
 
@@ -37,16 +37,9 @@
       </table>
 
     <p class="lead">
-      <a ng-click="createEventButton()" class="btn btn-lg btn-default takki2">Stofna bolta</a>
+      <a ng-click="createEventButton()" ng-show="loggedIn" class="btn btn-lg btn-default takki2">Stofna bolta</a>
     </p>
 
     </div>
-  </div>
-</div>
-
-<div ng-hide="loggedIn">
-  <div id="noEvent">
-    <h1 class="cover-heading">Velkominn Refur</h1>
-    <p class="lead">Vinsamlegast skráðu þig inn með Facebook til að halda áfram.</p>
   </div>
 </div>

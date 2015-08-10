@@ -21,7 +21,7 @@ myApp.controller('newEventController', [ '$scope', '$rootScope', '$location', 'm
 			$scope.toggleMin();
 
 			$scope.createEvent = function() {
-				if ($scope.isValid()) {
+				if ($scope.isValid() && $rootScope.loggedIn) {
 					$scope.newEvent.creator = $rootScope.user.facebookID;
 					$scope.newEvent.signedPlayers = { 0: $rootScope.user.facebookID };
 					$scope.newEvent.dateOfEvent = $scope.date.getDate() + "/" + ($scope.date.getMonth()+1) + "/" + $scope.date.getFullYear();

@@ -66,7 +66,7 @@ myApp.controller('appController', [ '$scope', '$rootScope', '$location', '$route
 	    	if (confirm("Ertu viss um að þú viljir útskrá?")) {
 				Facebook.logout(function() {
 					$scope.$apply(function() {
-						$rootScope.user   = {};
+						$rootScope.user = {};
 						$rootScope.loggedIn = false;
 					});
 				});

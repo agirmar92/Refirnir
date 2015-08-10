@@ -11,20 +11,23 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
 
         $scope.newComment = "";
         $scope.postComment = function() {
-            if($scope.newComment !== "") {
+            if($scope.newComment !== "" && $rootScope.user.facebookID) {
                 var commentToPost = new Comment($scope.newComment);
                 mySharedResources.postComment($scope.currentEvent, commentToPost);
                 $scope.newComment = "";
             }
         };
 
-		angular.element(document).ready(function () {
-        	$scope.currentEvent = mySharedResources.getEvent($routeParams.ID);
-        	if (!$rootScope.loggedIn || $scope.currentEvent === null) {
-        		$location.path("/boltar");
-        	}
-        	$scope.editing = false;
-    	});
+        $scope.$watch('synced', function(newValue, oldValue) {
+            if (newValue) {
+                // succesfully synced
+                $scope.currentEvent = mySharedResources.getEvent($routeParams.ID);
+                if ($scope.currentEvent === null) {
+                    $location.path("/boltar");
+                }
+                $scope.editing = false;
+            }
+        });
 
     	$scope.getName = function(id) {
     		return mySharedResources.getUser(id).name;
@@ -40,14 +43,16 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
     	};
 
     	$scope.deleteEventButton = function() {
-    		if(confirm("Ertu viss um að þú viljir eyða þessum fallega bolta?")) {
-				mySharedResources.deleteEvent($scope.currentEvent).then(function(result) {
-					$location.path("/boltar");
-					console.log(result);
-				}, function(result) {
-					console.log(result);
-				});
-    		}
+            if($scope.isCreator()) {
+        		if(confirm("Ertu viss um að þú viljir eyða þessum fallega bolta?")) {
+    				mySharedResources.deleteEvent($scope.currentEvent).then(function(result) {
+    					$location.path("/boltar");
+    					console.log(result);
+    				}, function(result) {
+    					console.log(result);
+    				});
+        		}
+            }
 		};
 
 		$scope.isCreator = function() {
