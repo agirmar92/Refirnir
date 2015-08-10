@@ -1,3 +1,5 @@
+@import url("animate.css");
+
 /*
  * Globals
  */
@@ -22,6 +24,10 @@ a:hover {
 /*
  * Base structure
  */
+
+html {
+  overflow-y: scroll;
+}
 
 html,
 body {
@@ -392,4 +398,25 @@ button.btn.btn-default.btn-sm.active {
 
 input.ng-invalid.ng-touched {
   border: 2px solid red;
+}
+
+.view-animate.ng-leave {
+  -webkit-animation-name: fadeOutRight;
+  animation-name: fadeOutRight;
+
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  position: absolute;
+}
+
+.view-animate.ng-enter {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
