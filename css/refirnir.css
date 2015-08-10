@@ -253,6 +253,9 @@ clip-path: url(foxclip.svg#svgClip);
 
 /* iOS support */
  -webkit-mask: url(foxclip.svg);
+
+ /* For internet explorer */
+ border-radius: 50% \9;
 }
 
 input,
