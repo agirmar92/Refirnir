@@ -1,6 +1,5 @@
-<div>
-
-  <h1 class="cover-heading fx-fade-down fx-easing-bounce">Stofna Bolta</h1>
+<div ng-show="loggedIn">
+  <h1 class="cover-heading">Stofna Bolta</h1>
 
   <form novalidate class="newEvent">
     <p class="lead labelFox">Hvaða dag? <span class="glyphicon glyphicon-calendar foxGlyph"></span></p>
@@ -18,4 +17,9 @@
 
     <input class="btn btn-lg btn-default takki2" style="margin: 10px;" type="submit" ng-click="createEvent()" value="Stofna" />
   </form>
+</div>
+
+<div ng-hide="loggedIn">
+  <h1 class="cover-heading">Skráðu þig inn venör</h1>
+  <p class="lead">Þú verður að vera innskráð/ur til að geta stofnað refabolta</p>
 </div>

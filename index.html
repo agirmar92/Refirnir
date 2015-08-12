@@ -37,17 +37,17 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li ng-class="selectedButton('boltar')"><a href="javascript: void(0)" ng-click="eventsButton()">Boltar</a></li>
-                  <li ng-class="selectedButton('nyr-bolti')"><a href="javascript: void(0)" ng-click="createEventButton()">Stofna bolta</a>
+                  <li ng-show="loggedIn" ng-class="selectedButton('nyr-bolti')"><a href="javascript: void(0)" ng-click="createEventButton()">Stofna bolta</a>
                   <li ng-show="loggedIn"><a id="username" href="javascript: void(0)" ng-click="logout()"><span class="theUsernameSpan" ng-bind="user.name + ' Refur'"></span>
                   <span style="display: none" class="logoutIcon glyphicon glyphicon-log-out"></span></a></li>
-                  <img ng-src="{{user.picture}}" ng-show="loggedIn" alt="" class="profilePicture">
+                  <img ng-src="{{user.picture}}" ng-show="loggedIn" alt="images/not-found.png" class="profilePicture">
                   <li ng-show="!loggedIn"><button type="button" class="btn btn-primary btn-large" ng-disabled="!facebookReady" ng-click="login()" style="margin-left: 20px;">Facebook login</button></li>
                 </ul>
               </nav>
             </div>
           </div>
 
-          <div class="inner cover" ng-view>
+          <div class="inner cover view-animate" ng-view>
             Augnablik mar...
           </div>
 
@@ -72,6 +72,7 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
     <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>

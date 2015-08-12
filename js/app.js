@@ -1,4 +1,4 @@
-var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase', 'ui.bootstrap' ]);
+var myApp = angular.module('refirnirApp', ['ngRoute', 'facebook', 'firebase', 'ui.bootstrap', 'ngAnimate' ]);
 
 myApp.config(['$routeProvider', 'FacebookProvider', 
 	function ($routeProvider, FacebookProvider) {
@@ -26,11 +26,13 @@ myApp.run(function($rootScope, $firebaseArray, $firebaseObject) {
     var usersRef = databaseRef.child("users");
     var eventsRef = databaseRef.child("boltar");
     // download the data into a local object
+    $rootScope.synced = false;
     $rootScope.events = $firebaseArray(eventsRef);
     $rootScope.events.$loaded().then(function() {
         $rootScope.users = $firebaseArray(usersRef);
         $rootScope.users.$loaded().then(function() {
             console.log("Successfully synced");
+            $rootScope.synced = true;
         }).catch(function(error) {
             console.log("Error:", error);
         });

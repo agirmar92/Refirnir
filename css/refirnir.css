@@ -1,3 +1,5 @@
+@import url("animate.css");
+
 /*
  * Globals
  */
@@ -22,6 +24,10 @@ a:hover {
 /*
  * Base structure
  */
+
+html {
+  overflow-y: scroll;
+}
 
 html,
 body {
@@ -245,6 +251,10 @@ body {
 }
 
 .profilePicture {
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transform: scale3d(1, 1, 1);
+
   /*Chrome,Safari*/
 -webkit-clip-path: url(foxclip.svg);
 
@@ -253,6 +263,14 @@ clip-path: url(foxclip.svg#svgClip);
 
 /* iOS support */
  -webkit-mask: url(foxclip.svg);
+
+ /* For internet explorer */
+ border-radius: 50% \9;
+}
+
+.comment-left > .profilePicture:hover,
+.comment-right > .profilePicture:hover {
+  transform: scale3d(1.2, 1.2, 1);
 }
 
 input,
@@ -389,4 +407,18 @@ button.btn.btn-default.btn-sm.active {
 
 input.ng-invalid.ng-touched {
   border: 2px solid red;
+}
+
+.view-animate.ng-leave {
+  display: none;
+}
+
+.view-animate.ng-enter {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
