@@ -1,4 +1,4 @@
-myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$routeParams', 'mySharedResources', 
+﻿myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$routeParams', 'mySharedResources', 
 	function ($scope, $rootScope, $location, $routeParams, mySharedResources) {
 		$scope.currentEvent = {};
 		$scope.editing = false;
@@ -17,6 +17,24 @@ myApp.controller('eventController', [ '$scope', '$rootScope', '$location', '$rou
                 $scope.newComment = "";
             }
         };
+
+	var mainMarker = {
+            lat: 64.08840715477538,
+            lng: -21.927595138549805,
+            focus: true,
+            draggable: false
+        };
+
+	angular.extend($scope, {
+            rvk: {
+                lat: 64.09189505185019,
+                lng: -21.9200420379639,
+                zoom: 14
+            },
+            markers: {
+                mainMarker: angular.copy(mainMarker)
+            }
+        });
 
         $scope.$watch('synced', function(newValue, oldValue) {
             if (newValue) {

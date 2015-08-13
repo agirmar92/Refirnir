@@ -1,12 +1,11 @@
-<div>
+﻿<div>
 
   <h1 class="cover-heading">{{currentEvent.location}} <span class="glyphicon glyphicon-map-marker foxGlyph"></span></h1>
   <p class="">{{currentEvent.dayOfEvent}}, {{currentEvent.dateOfEvent}} klukkan: {{currentEvent.timeOfEvent}} <span class="glyphicon glyphicon-time foxGlyph"></span></p>
   
   <div class="row eventBody">
-    <div class="col-lg-6" style="height:390px;">
-      <leaflet></leaflet>
-    </div>
+
+    <leaflet center="rvk" markers="markers" class="col-lg-6" style="height:330px; border-radius: 35px; z-index: 0;"></leaflet>
     
     <div class="col-lg-6">
       <table class="table table-hover boltar">
