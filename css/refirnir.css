@@ -423,7 +423,7 @@ input.ng-invalid.ng-touched {
   animation-fill-mode: both;
 }
 
-@-moz-keyframes spinner-loader {
+@-moz-keyframes three-quarters-loader {
   0% {
     -moz-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -433,7 +433,7 @@ input.ng-invalid.ng-touched {
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes spinner-loader {
+@-webkit-keyframes three-quarters-loader {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -443,7 +443,7 @@ input.ng-invalid.ng-touched {
     transform: rotate(360deg);
   }
 }
-@keyframes spinner-loader {
+@keyframes three-quarters-loader {
   0% {
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
@@ -458,21 +458,18 @@ input.ng-invalid.ng-touched {
   }
 }
 /* :not(:required) hides this rule from IE9 and below */
-.spinner-loader:not(:required) {
-  -moz-animation: spinner-loader 1500ms infinite linear;
-  -webkit-animation: spinner-loader 1500ms infinite linear;
-  animation: spinner-loader 1500ms infinite linear;
-  -moz-border-radius: 0.5em;
-  -webkit-border-radius: 0.5em;
-  border-radius: 0.5em;
-  -moz-box-shadow: rgba(0, 0, 51, 0.3) 1.5em 0 0 0, rgba(0, 0, 51, 0.3) 1.1em 1.1em 0 0, rgba(0, 0, 51, 0.3) 0 1.5em 0 0, rgba(0, 0, 51, 0.3) -1.1em 1.1em 0 0, rgba(0, 0, 51, 0.3) -1.5em 0 0 0, rgba(0, 0, 51, 0.3) -1.1em -1.1em 0 0, rgba(0, 0, 51, 0.3) 0 -1.5em 0 0, rgba(0, 0, 51, 0.3) 1.1em -1.1em 0 0;
-  -webkit-box-shadow: rgba(0, 0, 51, 0.3) 1.5em 0 0 0, rgba(0, 0, 51, 0.3) 1.1em 1.1em 0 0, rgba(0, 0, 51, 0.3) 0 1.5em 0 0, rgba(0, 0, 51, 0.3) -1.1em 1.1em 0 0, rgba(0, 0, 51, 0.3) -1.5em 0 0 0, rgba(0, 0, 51, 0.3) -1.1em -1.1em 0 0, rgba(0, 0, 51, 0.3) 0 -1.5em 0 0, rgba(0, 0, 51, 0.3) 1.1em -1.1em 0 0;
-  box-shadow: rgba(0, 0, 51, 0.3) 1.5em 0 0 0, rgba(0, 0, 51, 0.3) 1.1em 1.1em 0 0, rgba(0, 0, 51, 0.3) 0 1.5em 0 0, rgba(0, 0, 51, 0.3) -1.1em 1.1em 0 0, rgba(0, 0, 51, 0.3) -1.5em 0 0 0, rgba(0, 0, 51, 0.3) -1.1em -1.1em 0 0, rgba(0, 0, 51, 0.3) 0 -1.5em 0 0, rgba(0, 0, 51, 0.3) 1.1em -1.1em 0 0;
+.three-quarters-loader:not(:required) {
+  -moz-animation: three-quarters-loader 1250ms infinite linear;
+  -webkit-animation: three-quarters-loader 1250ms infinite linear;
+  animation: three-quarters-loader 1250ms infinite linear;
+  border: 8px solid #F48C1F;
+  border-right-color: transparent;
+  border-radius: 16px;
+  box-sizing: border-box;
   display: inline-block;
-  font-size: 10px;
-  width: 1em;
-  height: 1em;
-  margin: 1.5em;
+  position: relative;
   overflow: hidden;
-  text-indent: 100%;
+  text-indent: -9999px;
+  width: 32px;
+  height: 32px;
 }
