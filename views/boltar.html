@@ -1,45 +1,43 @@
-<div>
-  <div id="noEvent" ng-show="events.length === 0">
-    <h1 class="cover-heading">Enginn bolti <span class="glyphicon glyphicon-thumbs-down foxGlyph" aria-hidden="true"></span></h1>
-    <p class="lead">Það er enginn bolti skráður í augnablikinu</p>
-    <p class="lead">
-      <a ng-show="loggedIn" ng-click="createEventButton()" class="btn btn-lg btn-default takki2">Stofna Refabolta</a>
-    </p>
-  </div>
+<div id="noEvent" ng-show="events.length === 0">
+  <h1 class="cover-heading">Enginn bolti <span class="glyphicon glyphicon-thumbs-down foxGlyph" aria-hidden="true"></span></h1>
+  <p class="lead">Það er enginn bolti skráður í augnablikinu</p>
+  <p class="lead">
+    <a ng-show="loggedIn" ng-click="createEventButton()" class="btn btn-lg btn-default takki2">Stofna Refabolta</a>
+  </p>
+</div>
 
 
-  <div id="someEvent" ng-show="events.length !== 0">
-    <h1 class="cover-heading">Refaboltar <span class="glyphicon glyphicon-th-list foxGlyph" aria-hidden="true"></span></h1>
-    <p class="lead" style="color: #C7C7C7;">Smelltu á refabolta til að fá frekari upplýsingar</p>
-    <div class="table-responsive">
-      <table class="table table-hover boltar">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Hvar</th>
-            <th>Hvenær</th>
-            <th>Fjöldi Refa</th>
-            <th>Skráning</th>
-          </tr>
-        </thead>
+<div id="someEvent" ng-show="events.length !== 0">
+  <h1 class="cover-heading">Refaboltar <span class="glyphicon glyphicon-th-list foxGlyph" aria-hidden="true"></span></h1>
+  <p class="lead" style="color: #C7C7C7;">Smelltu á refabolta til að fá frekari upplýsingar</p>
+  <div class="table-responsive">
+    <table class="table table-hover boltar">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Hvar</th>
+          <th>Hvenær</th>
+          <th>Fjöldi Refa</th>
+          <th>Skráning</th>
+        </tr>
+      </thead>
 
-        <tbody>
-          <tr ng-repeat="event in events track by event.$id">
-            <td><button type="button" ng-click="eventClicked(event.$id)" class="btn btn-xs btn-default takki2">Skoða</button></td>
-            
-            <td>{{event.location}}</td>
-            <td>{{event.dateOfEvent}}</td>
-            <td ng-if="event.signedPlayers !== undefined">{{event.signedPlayers.length}}/{{event.maxPlayers}}</td>
-            <td ng-if="event.signedPlayers === undefined">0/{{event.maxPlayers}}</td>
-            <td><a href="javascript: void(0)" ng-click="checkBoxClicked(event.$id)" class="checkbox"><span id="checkbox-{{event.$id}}" class="glyphicon" ng-class="isSigned(event.$id)" aria-hidden="true"></a></td>
-          </tr>
-        </tbody>
-      </table>
+      <tbody>
+        <tr ng-repeat="event in events track by event.$id">
+          <td><button type="button" ng-click="eventClicked(event.$id)" class="btn btn-xs btn-default takki2">Skoða</button></td>
+          
+          <td>{{event.location}}</td>
+          <td>{{event.dateOfEvent}}</td>
+          <td ng-if="event.signedPlayers !== undefined">{{event.signedPlayers.length}}/{{event.maxPlayers}}</td>
+          <td ng-if="event.signedPlayers === undefined">0/{{event.maxPlayers}}</td>
+          <td><a href="javascript: void(0)" ng-click="checkBoxClicked(event.$id)" class="checkbox"><span id="checkbox-{{event.$id}}" class="glyphicon" ng-class="isSigned(event.$id)" aria-hidden="true"></a></td>
+        </tr>
+      </tbody>
+    </table>
 
-    <p class="lead">
-      <a ng-click="createEventButton()" ng-show="loggedIn" class="btn btn-lg btn-default takki2">Stofna bolta</a>
-    </p>
+  <p class="lead">
+    <a ng-click="createEventButton()" ng-show="loggedIn" class="btn btn-lg btn-default takki2">Stofna bolta</a>
+  </p>
 
-    </div>
   </div>
 </div>

@@ -47,8 +47,11 @@
             </div>
           </div>
 
-          <div class="inner cover view-animate" ng-view>
-            Augnablik mar...
+          <div class="inner cover">
+            <div class="view-animate" ng-show="synced" ng-view></div>
+            <div ng-hide="synced" class="spinner-loader">
+              Loading…
+            </div>
           </div>
 
           <div class="mastfoot">

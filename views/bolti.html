@@ -1,59 +1,55 @@
-﻿<div>
+﻿<h1 class="cover-heading">{{currentEvent.location}} <span class="glyphicon glyphicon-map-marker foxGlyph"></span></h1>
+<p class="">{{currentEvent.dayOfEvent}}, {{currentEvent.dateOfEvent}} klukkan: {{currentEvent.timeOfEvent}} <span class="glyphicon glyphicon-time foxGlyph"></span></p>
 
-  <h1 class="cover-heading">{{currentEvent.location}} <span class="glyphicon glyphicon-map-marker foxGlyph"></span></h1>
-  <p class="">{{currentEvent.dayOfEvent}}, {{currentEvent.dateOfEvent}} klukkan: {{currentEvent.timeOfEvent}} <span class="glyphicon glyphicon-time foxGlyph"></span></p>
+<div class="row eventBody">
+
+  <leaflet center="rvk" markers="markers" class="col-lg-6" style="height:330px; border-radius: 35px; z-index: 0;"></leaflet>
   
-  <div class="row eventBody">
+  <div class="col-lg-6">
+    <table class="table table-hover boltar">
+      <thead>
+        <tr>
+          <th>Skráðir refir <span class="glyphicon glyphicon-user foxGlyph"></th>
+        </tr>
+      </thead>
 
-    <leaflet center="rvk" markers="markers" class="col-lg-6" style="height:330px; border-radius: 35px; z-index: 0;"></leaflet>
-    
-    <div class="col-lg-6">
-      <table class="table table-hover boltar">
-        <thead>
-          <tr>
-            <th>Skráðir refir <span class="glyphicon glyphicon-user foxGlyph"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr ng-repeat="playerID in currentEvent.signedPlayers track by $index">
-            <td>{{getName(playerID)}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+      <tbody>
+        <tr ng-repeat="playerID in currentEvent.signedPlayers track by $index">
+          <td>{{getName(playerID)}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="row eventMessage" ng-repeat="comment in currentEvent.messages">
-    <div ng-hide="isAuthor(comment.author)">
-      <div class="col-lg-2 comment-left">
-        <img ng-src="{{getPicture(comment.author)}}" alt="images/not-found.png" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
-      </div>
-
-      <div class="col-lg-10 comment-right">
-        <p class="triangle-right left">{{comment.text}}</p>
-      </div>
-    </div>
-
-    <div ng-show="isAuthor(comment.author)">
-      <div class="col-lg-10 comment-left">
-        <p class="triangle-right right">{{comment.text}}</p>
-      </div>
-
-      <div class="col-lg-2 comment-right">
-        <img ng-src="{{getPicture(comment.author)}}" alt="images/not-found.png" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
-      </div>
-    </div>
-  </div> 
-
-  <div class="row eventMessage" ng-show="loggedIn">
-    <textarea ng-enter="postComment()" rows="4" cols="50" ng-model="newComment" placeholder="Hefuru eitthvað að segja refur?" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hefuru eitthvað að segja refur?'"></textarea> <br>
-    <div class="btn btn-lg btn-default takki2" style="margin: 10px;" ng-click="postComment()"><span>Senda</span></div>
-  </div> 
-
-  <p class="lead">
-    <a ng-click="deleteEventButton()" ng-show="isCreator()" class="btn btn-lg btn-default takki3">Eyða</a>
-  </p>
-
 </div>
+
+<div class="row eventMessage" ng-repeat="comment in currentEvent.messages">
+  <div ng-hide="isAuthor(comment.author)">
+    <div class="col-lg-2 comment-left">
+      <img ng-src="{{getPicture(comment.author)}}" alt="images/not-found.png" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
+    </div>
+
+    <div class="col-lg-10 comment-right">
+      <p class="triangle-right left">{{comment.text}}</p>
+    </div>
+  </div>
+
+  <div ng-show="isAuthor(comment.author)">
+    <div class="col-lg-10 comment-left">
+      <p class="triangle-right right">{{comment.text}}</p>
+    </div>
+
+    <div class="col-lg-2 comment-right">
+      <img ng-src="{{getPicture(comment.author)}}" alt="images/not-found.png" class="profilePicture" data-toggle="tooltip" title="{{getName(comment.author)}}">
+    </div>
+  </div>
+</div> 
+
+<div class="row eventMessage" ng-show="loggedIn">
+  <textarea ng-enter="postComment()" rows="4" cols="50" ng-model="newComment" placeholder="Hefuru eitthvað að segja refur?" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hefuru eitthvað að segja refur?'"></textarea> <br>
+  <div class="btn btn-lg btn-default takki2" style="margin: 10px;" ng-click="postComment()"><span>Senda</span></div>
+</div> 
+
+<p class="lead">
+  <a ng-click="deleteEventButton()" ng-show="isCreator()" class="btn btn-lg btn-default takki3">Eyða</a>
+</p>
