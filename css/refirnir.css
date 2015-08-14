@@ -1,4 +1,5 @@
 @import url("animate.css");
+@import url("magic.css");
 
 /*
  * Globals
@@ -472,4 +473,24 @@ input.ng-invalid.ng-touched {
   text-indent: -9999px;
   width: 32px;
   height: 32px;
+}
+
+.signedFox.ng-enter {
+  -webkit-animation-name: vanishIn;
+  animation-name: vanishIn;
+
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.signedFox.ng-leave {
+  -webkit-animation-name: vanishOut;
+  animation-name: vanishOut;
+
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }

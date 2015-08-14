@@ -14,7 +14,7 @@
       </thead>
 
       <tbody>
-        <tr ng-repeat="playerID in currentEvent.signedPlayers track by $index">
+        <tr class="signedFox" ng-repeat="playerID in currentEvent.signedPlayers track by $index">
           <td>{{getName(playerID)}}</td>
         </tr>
       </tbody>
