@@ -18,14 +18,23 @@
             }
         };
 
-	var mainMarker = {
+	   var mainMarker = {
             lat: 64.08840715477538,
             lng: -21.927595138549805,
             focus: true,
-            draggable: false
+            draggable: false,
+            icon: {
+                iconUrl: 'js/Leaflet/images/marker-fox.png',
+                shadowUrl: 'js/Leaflet/images/marker-shadow.png',
+                iconSize:     [25, 41], // size of the icon
+                shadowSize:   [41, 41], // size of the shadow
+                iconAnchor:   [12.5, 40], // point of the icon which will correspond to marker's location
+                shadowAnchor: [15, 40]  // the same for the shadow
+                //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            }
         };
 
-	angular.extend($scope, {
+	   angular.extend($scope, {
             rvk: {
                 lat: 64.08840715477538,
                 lng: -21.927595138549805,

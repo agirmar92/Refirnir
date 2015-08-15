@@ -25,14 +25,20 @@ myApp.run(function($rootScope, $firebaseArray, $firebaseObject) {
     var databaseRef = new Firebase("https://refirnir.firebaseio.com");
     var usersRef = databaseRef.child("users");
     var eventsRef = databaseRef.child("boltar");
+    var locationsRef = databaseRef.child("locations");
     // download the data into a local object
     $rootScope.synced = false;
     $rootScope.events = $firebaseArray(eventsRef);
     $rootScope.events.$loaded().then(function() {
         $rootScope.users = $firebaseArray(usersRef);
         $rootScope.users.$loaded().then(function() {
-            console.log("Successfully synced");
-            $rootScope.synced = true;
+            $rootScope.locations = $firebaseArray(locationsRef);
+            $rootScope.locations.$loaded().then(function() {
+                console.log("Successfully synced");
+                $rootScope.synced = true;
+            }).catch(function(error) {
+                console.log("Error: ", error);
+            });
         }).catch(function(error) {
             console.log("Error:", error);
         });

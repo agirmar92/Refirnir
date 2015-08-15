@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                 }
             },
             files: {
-                src: ['js/**/*.js']
+                src: ['js/Controllers/*.js', 'js/Factories/*.js', 'js/*.js']
             }
 
         }
