@@ -91,7 +91,7 @@
         };
 
         $scope.signupClicked = function() {
-            if($scope.currentEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
+            if($scope.currentEvent.signedPlayers && $scope.currentEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
                 // cancel signup
                 mySharedResources.unsignAttendance($scope.currentEvent.$id);
             } else {
