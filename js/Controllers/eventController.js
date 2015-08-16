@@ -89,6 +89,16 @@
         $scope.isAuthor = function(id) {
             return (id === $rootScope.user.facebookID);
         };
+
+        $scope.signupClicked = function() {
+            if($scope.currentEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
+                // cancel signup
+                mySharedResources.unsignAttendance($scope.currentEvent.$id);
+            } else {
+                // signup
+                mySharedResources.signAttendance($scope.currentEvent.$id);
+            }
+        };
 	}
 ]);
 

@@ -3,8 +3,16 @@
 
 <div class="row eventBody">
 
-  <leaflet center="rvk" markers="markers" class="col-lg-6" style="height:330px; border-radius: 35px; z-index: 0;"></leaflet>
-  
+  <div class="col-lg-6">
+    <leaflet center="rvk" markers="markers" style="height:330px; border-radius: 35px; z-index: 0;"></leaflet>
+    <div class="col-lg-6" style="padding: 15px">
+      <button class="btn btn-lg btn-default takki2" ng-click="signupClicked()">Skrá mig</button>
+    </div>
+    <div class="col-lg-6" style="padding: 15px">
+      <button class="btn btn-lg btn-default takki">Setja í lið</button>
+    </div>
+  </div>
+
   <div class="col-lg-6">
     <table class="table table-hover boltar">
       <thead>
