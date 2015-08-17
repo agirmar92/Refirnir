@@ -5,15 +5,17 @@
 
   <div class="col-lg-6">
     <leaflet center="rvk" markers="markers" style="height:330px; border-radius: 35px; z-index: 0;"></leaflet>
+  </div>
+
+  <div class="col-lg-6">
+
     <div class="col-lg-6" style="padding: 15px">
       <button class="btn btn-lg btn-default takki2" ng-click="signupClicked()">Skrá mig</button>
     </div>
     <div class="col-lg-6" style="padding: 15px">
       <button class="btn btn-lg btn-default takki">Setja í lið</button>
     </div>
-  </div>
 
-  <div class="col-lg-6">
     <table class="table table-hover boltar">
       <thead>
         <tr>
@@ -27,6 +29,7 @@
         </tr>
       </tbody>
     </table>
+
   </div>
 
 </div>
@@ -44,6 +47,7 @@
 
   <div ng-show="isAuthor(comment.author)">
     <div class="col-lg-10 comment-left">
+      <a href="javascript: void(0)" ng-click="deleteComment(comment)"><span class="glyphicon glyphicon-trash" style="float: right;"></span></a>
       <p class="triangle-right right">{{comment.text}}</p>
     </div>
 

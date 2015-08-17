@@ -58,7 +58,9 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
     };
 
     factory.editEvent = function(eventObject) {
-        // TODO
+        $rootScope.events.$save(eventObject).then(function(ref) {
+            console.log("event saved");
+        });
     };
 
     factory.deleteEvent = function(event) {
