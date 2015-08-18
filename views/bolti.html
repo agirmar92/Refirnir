@@ -10,10 +10,11 @@
   <div class="col-lg-6">
 
     <div class="col-lg-6" style="padding: 15px">
-      <button class="btn btn-lg btn-default takki2" ng-click="signupClicked()">Skrá mig</button>
+      <button ng-hide="isSignedUp()" class="btn btn-lg btn-default takki2" ng-click="signupClicked()">Game <span class="glyphicon glyphicon-thumbs-up"></span></button>
+      <button ng-show="isSignedUp()" class="btn btn-lg btn-default takki2" ng-click="resignClicked()">Beil <span class="glyphicon glyphicon-thumbs-down"></span></button>
     </div>
     <div class="col-lg-6" style="padding: 15px">
-      <button class="btn btn-lg btn-default takki">Setja í lið</button>
+      <button class="btn btn-lg btn-default takki">Setja í lið <span class="glyphicon glyphicon-random"></span></button>
     </div>
 
     <table class="table table-hover boltar">

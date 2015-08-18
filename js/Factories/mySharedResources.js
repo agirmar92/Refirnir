@@ -87,24 +87,28 @@ myApp.factory('mySharedResources', function($firebaseArray, $firebaseObject, $ro
     /* EXTRAS */
 
     factory.signAttendance = function(index) {
-    	var theEvent = this.getEvent(index);
-        if (theEvent.signedPlayers === undefined) {
-            theEvent.signedPlayers = [];
+        if($rootScope.user) {
+        	var theEvent = this.getEvent(index);
+            if (theEvent.signedPlayers === undefined) {
+                theEvent.signedPlayers = [];
+            }
+            theEvent.signedPlayers.push($rootScope.user.facebookID);
+            $rootScope.events.$save(theEvent).then(function(ref) {
+                console.log("signed up!");
+            });
         }
-        theEvent.signedPlayers.push($rootScope.user.facebookID);
-        $rootScope.events.$save(theEvent).then(function(ref) {
-            console.log("signed up!");
-        });
     };
 
     factory.unsignAttendance = function(index) {
-        var theEvent = this.getEvent(index);
-        var i = theEvent.signedPlayers.indexOf($rootScope.user.facebookID);
-        if (i !== -1) {
-            theEvent.signedPlayers.splice(i, 1);
-            $rootScope.events.$save(theEvent).then(function(ref) {
-                console.log("cancelled attendance!");
-            });
+        if($rootScope.user && confirm("Ertu viss um að þú viljir beila?")) {
+            var theEvent = this.getEvent(index);
+            var i = theEvent.signedPlayers.indexOf($rootScope.user.facebookID);
+            if (i !== -1) {
+                theEvent.signedPlayers.splice(i, 1);
+                $rootScope.events.$save(theEvent).then(function(ref) {
+                    console.log("cancelled attendance!");
+                });
+            }
         }
     };
 

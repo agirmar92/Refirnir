@@ -90,14 +90,18 @@
             return (id === $rootScope.user.facebookID);
         };
 
+        $scope.isSignedUp = function() {
+            return ($scope.currentEvent.signedPlayers && $scope.currentEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1);
+        };
+
         $scope.signupClicked = function() {
-            if($scope.currentEvent.signedPlayers && $scope.currentEvent.signedPlayers.indexOf($rootScope.user.facebookID) !== -1) {
-                // cancel signup
-                mySharedResources.unsignAttendance($scope.currentEvent.$id);
-            } else {
-                // signup
-                mySharedResources.signAttendance($scope.currentEvent.$id);
-            }
+            // signup
+            mySharedResources.signAttendance($scope.currentEvent.$id);
+        };
+
+        $scope.resignClicked = function() {
+            // cancel signup
+            mySharedResources.unsignAttendance($scope.currentEvent.$id);
         };
 
         $scope.deleteComment = function(comment) {
