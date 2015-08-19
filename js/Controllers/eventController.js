@@ -57,7 +57,9 @@
         });
 
     	$scope.getName = function(id) {
-    		return mySharedResources.getUser(id).name;
+            if(id) {
+    		  return mySharedResources.getUser(id).name;
+            }
     	};
 
     	$scope.getPicture = function(id) {
