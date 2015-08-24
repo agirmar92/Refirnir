@@ -107,13 +107,13 @@
         };
 
         $scope.deleteComment = function(comment) {
-            console.log("About to delete: " + comment.text + ", by: " + comment.author);
-
-            var i = $scope.currentEvent.messages.indexOf(comment);
-            if (i !== -1) {
-                $scope.currentEvent.messages.splice(i, 1);
-                mySharedResources.editEvent($scope.currentEvent);
-            }
+            if (confirm("Eyða athugasemd?")) {
+                var i = $scope.currentEvent.messages.indexOf(comment);
+                if (i !== -1) {
+                    $scope.currentEvent.messages.splice(i, 1);
+                    mySharedResources.editEvent($scope.currentEvent);
+                }
+            };
         };
 	}
 ]);
