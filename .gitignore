@@ -10,6 +10,7 @@ test/*.map
 .s3config.json
 
 node_modules
+bower_components
 npm-debug.log
 
 *.swp
